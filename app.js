@@ -1,7 +1,9 @@
-// Main application initialization and orchestration
+// Main application initialization
 
 // Initialize the application
 function init() {
+    console.log("🌍 World Builder initializing...");
+    
     // Load data from localStorage or use template
     loadFromLocalStorage();
     
@@ -20,7 +22,7 @@ function init() {
     const dirSelect = document.getElementById("textDirection");
     if (dirSelect) dirSelect.value = savedDirection;
     
-    console.log("World Builder initialized");
+    console.log("✓ World Builder initialized successfully");
     showToast("Welcome to World Builder!", "success", 2000);
 }
 
@@ -33,15 +35,11 @@ if (document.readyState === "loading") {
 
 // Warn before leaving if there's unsaved data
 window.addEventListener("beforeunload", (e) => {
-    // Only warn if data has been modified (optional - can be removed if annoying)
-    // For now, we auto-save to localStorage, so this is mostly informational
     const hasData = data.characters.length > 0 || 
                     data.locations.length > 0 || 
                     data.factions.length > 0;
     
     if (hasData) {
-        // Note: Most modern browsers ignore custom messages
-        // They show a generic "Leave site?" dialog
         e.preventDefault();
         e.returnValue = "";
     }
