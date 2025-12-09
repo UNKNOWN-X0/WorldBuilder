@@ -90,8 +90,7 @@ function showToast(message, type = "info", duration = 3000) {
     if (toastTimeout) clearTimeout(toastTimeout);
     
     toastTimeout = setTimeout(() => {
-        toast.style.animation = "slideIn 0.3s ease reverse";
-        setTimeout(() => toast.remove(), 300);
+        toast.remove();
     }, duration);
 }
 
