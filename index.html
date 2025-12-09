@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Builder - Story & Worldbuilding Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 World Builder</h1>
+            <p style="color: var(--text-dim); margin-bottom: 15px;">Story & worldbuilding editor - Load from Google Drive or GitHub, edit, and export</p>
+            
+            <div class="controls">
+                <button onclick="showLoadModal()">📂 Load JSON</button>
+                <button onclick="downloadJSON()" class="secondary">💾 Download JSON</button>
+                <button onclick="copyJSON()" class="secondary">📋 Copy JSON</button>
+                <button onclick="openJSONPreview()" class="secondary">👁️ Preview JSON</button>
+                <button onclick="showSettingsModal()" class="secondary">⚙️ Settings</button>
+                <button onclick="resetData()" class="danger">🗑️ Reset All</button>
+            </div>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Search by name or ID..." oninput="filterComponents()">
+        </div>
+
+        <div class="tabs" id="tabs"></div>
+        <div id="content"></div>
+    </div>
+
+    <!-- Load Modal -->
+    <div id="loadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Load JSON Data</div>
+            <div class="input-group">
+                <label>Paste Google Drive or GitHub Link:</label>
+                <input type="text" id="linkInput" placeholder="https://drive.google.com/file/d/.../view or https://github.com/.../file.json">
+                <div class="help-text">
+                    Google Drive: Share link → converted to direct download<br>
+                    GitHub: File URL → converted to raw.githubusercontent.com
+                </div>
+            </div>
+            <div class="controls">
+                <button onclick="loadFromLink()">Load from Link</button>
+                <button onclick="closeModal('loadModal')" class="secondary">Cancel</button>
+            </div>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border);">
+            <div class="input-group">
+                <label>Or paste JSON directly:</label>
+                <textarea id="jsonInput" rows="10" placeholder='{"characters": [], "meta": {...}}'></textarea>
+            </div>
+            <div class="controls">
+                <button onclick="loadFromJSON()">Load JSON</button>
+            </div>
+            <div id="loadError"></div>
+            
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--border);">
+            <div style="font-size: 13px; color: var(--text-dim); line-height: 1.8;">
+                <strong>📖 GitHub Hosting Guide:</strong><br>
+                1. Create a public repo on GitHub<br>
+                2. Upload your .json file to the repo<br>
+                3. Open the file, click "Raw" button<br>
+                4. Copy the raw.githubusercontent.com URL<br>
+                5. Paste it above to load<br><br>
+                <strong>For GitHub Pages:</strong><br>
+                - Enable Pages in repo settings<br>
+                - Upload this index.html file<br>
+                - Access at https://username.github.io/repo/<br><br>
+                <strong>⚠️ Note:</strong> Private repos will fail due to permissions. Use public repos or Google Drive public share.
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">Settings</div>
+            
+            <div class="input-group">
+                <label>Project Title:</label>
+                <input type="text" id="projectTitle" oninput="updateMeta('title', this.value)">
+            </div>
+
+            <div class="input-group">
+                <label>Language Code:</label>
+                <input type="text" id="projectLanguage" placeholder="en, es, ja, ar, zh, hi, etc." oninput="updateMeta('language', this.value)">
+                <div class="help-text">Examples: en (English), es (Spanish), ja (Japanese), ar (Arabic), zh (Chinese), hi (Hindi)</div>
+            </div>
+
+            <div class="input-group">
+                <label>Text Direction:</label>
+                <select id="textDirection" onchange="setTextDirection(this.value)">
+                    <option value="ltr">Left-to-Right (LTR)</option>
+                    <option value="rtl">Right-to-Left (RTL)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Custom Font:</label>
+                <select id="fontPreset" onchange="applyFontPreset(this.value)">
+                    <option value="">System Default</option>
+                    <option value="serif">Serif (Georgia, Times)</option>
+                    <option value="mono">Monospace (Courier, Monaco)</option>
+                    <option value="cjk">CJK Fonts (Chinese/Japanese/Korean)</option>
+                    <option value="arabic">Arabic Fonts</option>
+                    <option value="devanagari">Devanagari Fonts (Hindi/Sanskrit)</option>
+                    <option value="custom">Custom URL or @font-face...</option>
+                </select>
+            </div>
+
+            <div class="input-group" id="customFontGroup" style="display: none;">
+                <label>Custom Font (URL or @font-face CSS):</label>
+                <textarea id="customFont" rows="4" placeholder="https://example.com/font.woff2 or @font-face { font-family: 'MyFont'; src: url(...); }" oninput="applyCustomFont()"></textarea>
+                <div class="help-text">Paste a font URL or complete @font-face CSS block</div>
+            </div>
+
+            <div class="input-group">
+                <label>Theme:</label>
+                <div class="theme-picker" id="themePicker"></div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button onclick="closeModal('settingsModal')" class="secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="schemas.js"></script>
+    <script src="themes.js"></script>
+    <script src="ui.js"></script>
+    <script src="components.js"></script>
+    <script src="storage.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
