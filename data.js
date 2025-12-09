@@ -51,38 +51,6 @@ function resolveLink(id, targets) {
     return null;
 }
 
-// Get all references to a specific ID
-function getReferences(targetId) {
-    const references = [];
-    
-    for (const [type, items] of Object.entries(data)) {
-        if (type === "meta") continue;
-        
-        items.forEach((item, index) => {
-            const schema = schemas[type];
-            if (!schema) return;
-            
-            for (const [fieldKey, fieldDef] of Object.entries(schema.fields)) {
-                if (fieldDef.type === "links" || fieldDef.type === "link") {
-                    const value = item[fieldKey] || "";
-                    const ids = value.split(",").map(id => id.trim()).filter(id => id);
-                    
-                    if (ids.includes(targetId)) {
-                        references.push({
-                            type,
-                            item,
-                            field: fieldKey,
-                            index
-                        });
-                    }
-                }
-            }
-        });
-    }
-    
-    return references;
-}
-
 // Initialize with template data
 function initializeTemplateData() {
     data = {
@@ -201,4 +169,11 @@ function initializeTemplateData() {
             theme: "fantasy"
         }
     };
+}
+
+// Utility to escape HTML
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
 }
