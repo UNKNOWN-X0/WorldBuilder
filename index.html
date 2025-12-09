@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <header>
-            <h1><span style="font-size: 36px;">🌍</span> World Builder</h1>
+            <h1>🌍 World Builder</h1>
             <p>Story & worldbuilding editor - Load from Google Drive or GitHub, edit, and export</p>
             
             <div class="controls">
@@ -95,25 +95,6 @@
                     <option value="ltr">Left-to-Right (LTR)</option>
                     <option value="rtl">Right-to-Left (RTL)</option>
                 </select>
-            </div>
-
-            <div class="input-group">
-                <label>Custom Font:</label>
-                <select id="fontPreset" onchange="applyFontPreset(this.value)">
-                    <option value="">System Default</option>
-                    <option value="serif">Serif (Georgia, Times)</option>
-                    <option value="mono">Monospace (Courier, Monaco)</option>
-                    <option value="cjk">CJK Fonts (Chinese/Japanese/Korean)</option>
-                    <option value="arabic">Arabic Fonts</option>
-                    <option value="devanagari">Devanagari Fonts (Hindi/Sanskrit)</option>
-                    <option value="custom">Custom URL or @font-face...</option>
-                </select>
-            </div>
-
-            <div class="input-group" id="customFontGroup" style="display: none;">
-                <label>Custom Font (URL or @font-face CSS):</label>
-                <textarea id="customFont" rows="4" placeholder="https://example.com/font.woff2 or @font-face { font-family: 'MyFont'; src: url(...); }" oninput="applyCustomFont()"></textarea>
-                <div class="help-text">Paste a font URL or complete @font-face CSS block</div>
             </div>
 
             <div class="input-group">
