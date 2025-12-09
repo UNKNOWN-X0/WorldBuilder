@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            background: #0f172a;
+            color: #f1f5f9;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .section { 
+            background: #1e293b;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #334155;
+        }
+        h2 { color: #34d399; }
+    </style>
+</head>
+<body>
+    <h1>🔍 World Builder Diagnostic Test</h1>
+    
+    <div class="section">
+        <h2>1. CSS File Test</h2>
+        <p id="css-test">Testing...</p>
+    </div>
+
+    <div class="section">
+        <h2>2. JavaScript Files Test</h2>
+        <p id="js-test">Testing...</p>
+    </div>
+
+    <div class="section">
+        <h2>3. File Structure Check</h2>
+        <p>Your files should be organized like this:</p>
+        <pre>
+your-folder/
+├── index.html
+├── styles.css
+├── data.js
+├── schemas.js
+├── themes.js
+├── ui.js
+├── components.js
+├── storage.js
+└── app.js
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2>4. Console Errors</h2>
+        <p>Check your browser console (F12) for errors</p>
+        <p id="console-errors"></p>
+    </div>
+
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        // Test 1: Check if CSS loaded
+        setTimeout(() => {
+            const bg = getComputedStyle(document.body).backgroundColor;
+            const cssTest = document.getElementById('css-test');
+            if (bg === 'rgb(15, 23, 42)') {
+                cssTest.innerHTML = '<span class="success">✓ CSS loaded correctly!</span>';
+            } else {
+                cssTest.innerHTML = '<span class="error">✗ CSS NOT loaded. Background should be rgb(15, 23, 42) but is: ' + bg + '</span><br><strong>Fix:</strong> Make sure styles.css is in the same folder as this HTML file.';
+            }
+        }, 100);
+
+        // Test 2: Check if JavaScript files will load
+        const jsTest = document.getElementById('js-test');
+        let jsFiles = ['data.js', 'schemas.js', 'themes.js', 'ui.js', 'components.js', 'storage.js', 'app.js'];
+        let results = [];
+
+        jsFiles.forEach(file => {
+            fetch(file)
+                .then(response => {
+                    if (response.ok) {
+                        results.push(`<span class="success">✓ ${file}</span>`);
+                    } else {
+                        results.push(`<span class="error">✗ ${file} (${response.status})</span>`);
+                    }
+                })
+                .catch(err => {
+                    results.push(`<span class="error">✗ ${file} (Not found)</span>`);
+                })
+                .finally(() => {
+                    jsTest.innerHTML = results.join('<br>');
+                });
+        });
+
+        // Test 3: Capture console errors
+        window.onerror = function(msg, url, line, col, error) {
+            const errorDiv = document.getElementById('console-errors');
+            errorDiv.innerHTML += `<span class="error">Error: ${msg} at line ${line}</span><br>`;
+        };
+    </script>
+</body>
+</html>
