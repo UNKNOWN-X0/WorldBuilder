@@ -45,9 +45,11 @@ function renderContent() {
         listEl.appendChild(createComponentCard(currentTab, item, actualIndex));
     });
     
-    // Show message if search has no results
+    // Show message if search has no results or empty state
     if (filtered.length === 0 && searchTerm) {
-        listEl.innerHTML = '<div style="padding: 40px; text-align: center; color: var(--text-dim);">No components match your search</div>';
+        listEl.innerHTML = '<div class="empty-state">🔍 No components match your search</div>';
+    } else if (filtered.length === 0 && !searchTerm) {
+        listEl.innerHTML = `<div class="empty-state">📝 No ${schema.label.toLowerCase()} yet. Click the button below to add one!</div>`;
     }
 }
 
