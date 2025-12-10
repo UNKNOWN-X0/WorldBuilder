@@ -540,6 +540,18 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.btn-edit.editing {
+    padding: 10px 18px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+}
+
 .btn-edit.editing::before {
     content: '👁 ';
 }
@@ -549,6 +561,18 @@ body {
     border-color: var(--accent-light);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.component-controls button.secondary {
+    padding: 10px 18px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
 }
 
 .component-controls button.secondary::before {
@@ -564,9 +588,15 @@ body {
 }
 
 .component-controls button.danger {
-    color: var(--danger);
-    border-color: var(--danger);
+    padding: 10px 18px;
+    border: 2px solid var(--danger);
     background: var(--bg);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--danger);
 }
 
 .component-controls button.danger::before {
