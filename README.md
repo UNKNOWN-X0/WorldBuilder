@@ -2,6 +2,9 @@
 
 A comprehensive web-based story and worldbuilding editor for writers, game masters, and creators. Organize characters, events, locations, factions, items, lore, and world rules with an intuitive interface and powerful linking system.
 
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+
 ## ✨ Features
 
 ### 📚 Comprehensive Organization
