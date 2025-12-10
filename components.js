@@ -13,7 +13,7 @@ function addComponent(type) {
     }
     
     data[type].push(newItem);
-    renderTabs();
+    renderSidebarNav();
     renderContent();
     saveToLocalStorage();
     showToast(`Added new ${schemas[type].label.slice(0, -1)}`, "success");
