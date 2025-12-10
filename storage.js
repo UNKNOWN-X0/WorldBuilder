@@ -188,11 +188,16 @@ function openJSONPreview() {
 }
 
 function updateMetaFields() {
-    const titleInput = document.getElementById("projectTitle");
+    const titleInput = document.getElementById("projectTitleSidebar");
     const langInput = document.getElementById("projectLanguage");
+    const authorInput = document.getElementById("projectAuthor");
     
     if (titleInput) titleInput.value = data.meta.title || "";
     if (langInput) langInput.value = data.meta.language || "en";
+    if (authorInput) authorInput.value = data.meta.author || "";
+    
+    updateSidebarTitle();
+    updateBreadcrumb();
 }
 
 function updateMeta(field, value) {
