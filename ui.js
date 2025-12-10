@@ -127,7 +127,10 @@ function closeModal(id) {
 }
 
 function toggleSidebar() {
-    document.querySelector(".sidebar").classList.toggle("open");
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) {
+        sidebar.classList.toggle("open");
+    }
 }
 
 // Toast notifications
