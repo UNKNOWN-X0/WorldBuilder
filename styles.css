@@ -525,13 +525,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: var(--text-dim);
-}
-
-.btn-edit {
-    background: var(--bg);
-    color: var(--text);
-    border-color: var(--accent);
+    color: white;
 }
 
 .btn-edit::before {
@@ -546,17 +540,11 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.btn-edit.editing {
-    background: var(--bg);
-    color: var(--text);
-    border-color: var(--accent);
-}
-
 .btn-edit.editing::before {
     content: '👁 ';
 }
 
-.btn-edit:hover {
+.btn-edit.editing:hover {
     color: white;
     border-color: var(--accent-light);
     transform: translateY(-2px);
@@ -568,7 +556,7 @@ body {
     font-size: 14px;
 }
 
-.component-controls button:hover {
+.component-controls button.secondary:hover {
     color: white;
     border-color: var(--accent-light);
     transform: translateY(-2px);
