@@ -151,11 +151,67 @@ function createComponentCard(type, item, index) {
 
 function renderFieldsView(type, item, index) {
     const schema = schemas[type];
-    let html = '<div class="field-grid">';
+    
+    // Define key fields to show for each type
+    const keyFields = {
+        characters: ['name', 'role', 'power_level', 'age'],
+        minorEvents: ['name', 'category', 'timeline'],
+        majorEvents: ['name', 'arc', 'timeline'],
+        globalEvents: ['name', 'type', 'year_or_era'],
+        locations: ['name', 'type'],
+        factions: ['name', 'type', 'faction_level'],
+        items: ['name', 'type', 'item_level'],
+        lore: ['topic', 'type'],
+        worldRules: ['name', 'description']
+    };
+    
+    const fieldsToShow = keyFields[type] || ['name'];
+    
+    let html = '<div class="field-grid-summary">';
+    
+    for (const fieldKey of fieldsToShow) {
+        const fieldDef = schema.fields[fieldKey];
+        const value = item[fieldKey] || "";
+        
+        if (fieldDef && value) {
+            html += `<div class="field-display-summary">`;
+            html += `<div class="field-label-summary">${fieldDef.label}</div>`;
+            
+            if (fieldDef.type === "links" || fieldDef.type === "link") {
+                html += `<div class="field-value-summary">${renderLinksPreview(value, fieldDef.targets)}</div>`;
+            } else {
+                const truncatedValue = value.length > 100 ? value.substring(0, 100) + '...' : value;
+                html += `<div class="field-value-summary">${escapeHtml(truncatedValue)}</div>`;
+            }
+            
+            html += `</div>`;
+        }
+    }
+    
+    // Add expand button to see all fields
+    html += `<div class="expand-details">
+        <button class="btn-expand" onclick="expandDetails('${type}', ${index}, event)">
+            📋 View All Details
+        </button>
+    </div>`;
+    
+    html += '</div>';
+    return html;
+}
+
+function expandDetails(type, index, event) {
+    event.stopPropagation();
+    
+    const viewMode = document.getElementById(`body-${type}-${index}`);
+    const schema = schemas[type];
+    const item = data[type][index];
+    
+    // Render full details view
+    let html = '<div class="field-grid-full">';
     
     for (const [fieldKey, fieldDef] of Object.entries(schema.fields)) {
         const value = item[fieldKey] || "";
-        if (fieldKey === 'id') continue; // Skip ID in view mode
+        if (fieldKey === 'id') continue;
         
         if (value) {
             html += `<div class="field-display">`;
@@ -173,8 +229,26 @@ function renderFieldsView(type, item, index) {
         }
     }
     
+    // Add collapse button
+    html += `<div class="expand-details">
+        <button class="btn-expand" onclick="collapseDetails('${type}', ${index}, event)">
+            ▲ Show Less
+        </button>
+    </div>`;
+    
     html += '</div>';
-    return html;
+    
+    viewMode.innerHTML = html;
+}
+
+function collapseDetails(type, index, event) {
+    event.stopPropagation();
+    
+    const viewMode = document.getElementById(`body-${type}-${index}`);
+    const item = data[type][index];
+    
+    // Re-render summary view
+    viewMode.innerHTML = renderFieldsView(type, item, index);
 }
 
 function renderFieldsEdit(type, item, index) {
