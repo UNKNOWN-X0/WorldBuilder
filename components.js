@@ -331,7 +331,7 @@ function saveEdit(type, index) {
         const newCard = createComponentCard(type, data[type][index], index);
         card.replaceWith(newCard);
         
-        showToast("✓ Changes saved successfully!", "success");
+        showToast("Changes saved successfully!", "success");
     } else {
         // Just switch back to view mode
         toggleEditMode(type, index, { target: document.querySelector(`#card-${type}-${data[type][index].id} .btn-edit`), stopPropagation: () => {} });
