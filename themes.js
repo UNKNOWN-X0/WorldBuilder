@@ -353,6 +353,16 @@ function applyTheme(themeName) {
     root.style.setProperty('--text-dim', theme.textDim);
     root.style.setProperty('--border', theme.border);
     
+    // Add or remove dark-theme class based on theme
+    if (themeName === 'light') {
+        document.body.classList.remove('dark-theme');
+        // Override for light theme
+        root.style.setProperty('--sidebar-bg', '#ffffff');
+    } else {
+        document.body.classList.add('dark-theme');
+        root.style.setProperty('--sidebar-bg', theme.card);
+    }
+    
     data.meta.theme = themeName;
     saveToLocalStorage();
     
