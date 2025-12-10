@@ -8,10 +8,13 @@ function init() {
     loadFromLocalStorage();
     
     // Render UI
-    renderTabs();
+    renderSidebarNav();
     renderContent();
     renderThemePicker();
     updateMetaFields();
+    updateBreadcrumb();
+    updateSidebarTitle();
+    populateThemeSelect();
     
     // Apply saved theme
     applyTheme(data.meta.theme || "fantasy");
@@ -23,7 +26,23 @@ function init() {
     if (dirSelect) dirSelect.value = savedDirection;
     
     console.log("✓ World Builder initialized successfully");
-    showToast("Welcome to World Builder!", "success", 2000);
+}
+
+// Populate theme select in sidebar
+function populateThemeSelect() {
+    const select = document.getElementById("themeSelect");
+    if (!select) return;
+    
+    select.innerHTML = "";
+    for (const [key, theme] of Object.entries(themes)) {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = theme.name;
+        if (key === (data.meta.theme || "fantasy")) {
+            option.selected = true;
+        }
+        select.appendChild(option);
+    }
 }
 
 // Start application when DOM is ready
