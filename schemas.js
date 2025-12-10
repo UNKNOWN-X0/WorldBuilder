@@ -151,7 +151,18 @@ const schemas = {
     },
     worldRules: {
         label: "World Rules",
-        icon: "⚖️",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- Background grid lines (cross-section reference) -->
+                  <line x1="4" y1="6" x2="20" y2="6" stroke-width="0.5" stroke-dasharray="1,1"></line>
+                  <line x1="4" y1="12" x2="20" y2="12" stroke-width="0.5" stroke-dasharray="1,1"></line>
+                  <line x1="4" y1="18" x2="20" y2="18" stroke-width="0.5" stroke-dasharray="1,1"></line>
+                  
+                  <!-- Gravitational well cone/depression -->
+                  <path d="M12 4 C8 10, 8 14, 12 20 C16 14, 16 10, 12 4" fill="none"></path>
+                  
+                  <!-- Black hole at center/bottom of well -->
+                  <circle cx="12" cy="12" r="2" fill="black" stroke="currentColor"></circle>
+                </svg>`,
         fields: {
             id: { type: "text", label: "ID", required: true },
             name: { type: "text", label: "Name", required: true },
