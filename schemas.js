@@ -151,20 +151,16 @@ const schemas = {
     },
     worldRules: {
         label: "World Rules",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" 
-                     width="24" height="24" viewBox="0 0 24 24"
-                     fill="none" stroke="currentColor" stroke-width="2"
-                     stroke-linecap="round" stroke-linejoin="round"
-                     aria-hidden="true">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <!-- hole -->
-                  <ellipse cx="12" cy="16" rx="6" ry="3" />
+                  <ellipse cx="12" cy="16" rx="6" ry="3"></ellipse>
                   <!-- horizontal grid lines -->
-                  <path d="M4 12h16" />
-                  <path d="M6 9h12" />
+                  <path d="M4 12h16"></path>
+                  <path d="M6 9h12"></path>
                   <!-- vertical grid lines -->
-                  <path d="M12 4v8" />
-                  <path d="M8 6v6" />
-                  <path d="M16 6v6" />
+                  <path d="M12 4v8"></path>
+                  <path d="M8 6v6"></path>
+                  <path d="M16 6v6"></path>
                 </svg>`,
         fields: {
             id: { type: "text", label: "ID", required: true },
