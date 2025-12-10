@@ -366,10 +366,6 @@ body {
     font-weight: 800;
     color: var(--text);
     margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .content-subtitle {
@@ -416,8 +412,9 @@ body {
     box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
 }
 
-.btn-icon {
-    font-size: 22px;
+.btn-add-new::after {
+    content: '+';
+    font-size: 20px;
     font-weight: 700;
 }
 
@@ -522,28 +519,45 @@ body {
 .btn-edit {
     padding: 10px 18px;
     border: 2px solid var(--border);
-    background: var(--card);
+    background: white;
     border-radius: 8px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    color: var(--text);
 }
 
 .btn-edit {
-    background: var(--accent);
-    color: white;
+    background: white;
+    color: var(--accent);
     border-color: var(--accent);
 }
 
+.btn-edit::before {
+    content: '✎ ';
+    font-size: 14px;
+}
+
 .btn-edit:hover {
-    background: var(--accent-dark);
+    background: var(--accent);
+    color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .btn-edit.editing {
-    background: var(--info);
+    background: var(--accent);
+    color: white;
+}
+
+.btn-edit.editing::before {
+    content: '👁 ';
+}
+
+.component-controls button.secondary::before {
+    content: '⎘ ';
+    font-size: 14px;
 }
 
 .component-controls button:hover {
@@ -555,6 +569,12 @@ body {
 .component-controls button.danger {
     color: var(--danger);
     border-color: var(--danger);
+    background: white;
+}
+
+.component-controls button.danger::before {
+    content: '✕ ';
+    font-size: 14px;
 }
 
 .component-controls button.danger:hover {
@@ -1064,6 +1084,7 @@ textarea {
     
     .sidebar.open {
         transform: translateX(0);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
     }
     
     .main-content {
@@ -1086,5 +1107,10 @@ textarea {
     
     .content-title-section h1 {
         font-size: 28px;
+    }
+    
+    /* Show hamburger menu on mobile */
+    .sidebar-header button {
+        display: block;
     }
 }
