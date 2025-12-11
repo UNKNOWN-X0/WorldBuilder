@@ -671,7 +671,7 @@ body {
 }
 
 .component-controls button.secondary:hover {
-    color: white;
+    color: var(--text);
     border-color: var(--accent-light);
     font-size: 14px;
     transform: translateY(-2px);
