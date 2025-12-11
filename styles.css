@@ -377,7 +377,7 @@ body {
 .icon-btn {
     width: 40px;
     height: 40px;
-    color: white;
+    color: var(--text);
     border: 2px solid var(--border);
     background: var(--bg);
     border-radius: 10px;
@@ -391,7 +391,7 @@ body {
 
 .icon-btn:hover {
     background: var(--accent-dim);
-    color: white;
+    color: var(--text);
     border-color: var(--accent-light);
     transform: translateY(-2px) scale(1.05);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -430,7 +430,7 @@ body {
 /* Big "Add New" button */
 .btn-add-new {
     background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-    color: white;
+    color: var(--text);
     border: none;
     padding: 14px 28px;
     border-radius: 12px;
@@ -582,7 +582,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: white;
+    color: var(--text);
 }
 
 /* Edit button prefix icon */
@@ -592,7 +592,7 @@ body {
 }
 
 .btn-edit:hover {
-    color: white;
+    color: var(--text);
     border-color: var(--accent-light);
     font-size: 14px;
     transform: translateY(-2px);
@@ -609,7 +609,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: white;
+    color: var(--text);
 }
 
 .btn-edit.editing::before {
@@ -618,7 +618,7 @@ body {
 }
 
 .btn-edit.editing:hover {
-    color: white;
+    color: var(--text);
     border-color: var(--accent-light);
     font-size: 14px;
     transform: translateY(-2px);
@@ -635,7 +635,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    color: white;
+    color: var(--text);
 }
 
 .component-controls button.secondary::before {
