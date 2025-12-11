@@ -4,172 +4,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Builder - Story & Worldbuilding Editor</title>
+
+    <!-- =====================================
+         Global Stylesheet
+         Contains layout, themes, UI styles
+    ====================================== -->
     <link rel="stylesheet" href="styles.css">
 </head>
+
+
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <h2>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" shape-rendering="geometricPrecision">
-                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
-              </svg>
-              <span id="sidebarProjectTitle">Novel Org</span>
-            </h2>
-            <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+<!-- ============================================
+     SIDEBAR (Project Navigation + Metadata)
+     Contains:
+     - Project title, author, theme picker
+     - Folder-like navigation
+     - Import/Export controls
+=============================================== -->
+<aside class="sidebar">
+
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+        <h2>
+            <!-- App Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke="currentColor">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
+            </svg>
+            <span id="sidebarProjectTitle">Novel Org</span>
+        </h2>
+
+        <!-- Collapse button -->
+        <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <!-- Project Structure Navigation -->
+    <div class="sidebar-section">
+        <h3 class="sidebar-section-title">Project Structure</h3>
+        <nav class="sidebar-nav" id="sidebarNav"></nav>
+    </div>
+
+    <!-- Project Metadata -->
+    <div class="sidebar-section">
+        <div class="sidebar-input-group">
+            <label>Project Title</label>
+            <input id="projectTitleSidebar" type="text"
+                   oninput="updateMeta('title', this.value)">
         </div>
 
-        <div class="sidebar-section">
-            <h3 class="sidebar-section-title">Project Structure</h3>
-            <nav class="sidebar-nav" id="sidebarNav"></nav>
+        <div class="sidebar-input-group">
+            <label>Author</label>
+            <input id="projectAuthor" type="text" placeholder="Your name"
+                   oninput="updateMeta('author', this.value)">
         </div>
 
-        <div class="sidebar-section">
-            <div class="sidebar-input-group">
-                <label>Project Title</label>
-                <input type="text" id="projectTitleSidebar" oninput="updateMeta('title', this.value)">
-            </div>
+        <div class="sidebar-input-group">
+            <label>Theme</label>
+            <select id="themeSelect" onchange="applyTheme(this.value)"></select>
+        </div>
+    </div>
 
-            <div class="sidebar-input-group">
-                <label>Author</label>
-                <input type="text" id="projectAuthor" placeholder="Your name" oninput="updateMeta('author', this.value)">
-            </div>
+    <!-- Import / Export -->
+    <div class="sidebar-actions">
+        <button onclick="showLoadModal()" class="sidebar-btn secondary">Import</button>
+        <button onclick="downloadJSON()" class="sidebar-btn primary">Export JSON</button>
+    </div>
+</aside>
 
-            <div class="sidebar-input-group">
-                <label>Theme</label>
-                <select id="themeSelect" onchange="applyTheme(this.value)"></select>
-            </div>
+<!-- ============================================
+     MAIN CONTENT AREA
+     Contains:
+     - Breadcrumb navigation
+     - Page header + Add button
+     - Search bar
+     - Dynamic component editor area
+=============================================== -->
+<main class="main-content">
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="breadcrumb">
+            <span class="breadcrumb-label">Project:</span>
+            <span id="breadcrumbProject" class="breadcrumb-item">My World</span>
+            <span class="breadcrumb-separator">›</span>
+            <span id="breadcrumbSection" class="breadcrumb-item current">Characters</span>
         </div>
 
-        <div class="sidebar-actions">
-            <button onclick="showLoadModal()" class="sidebar-btn secondary">Import</button>
-            <button onclick="downloadJSON()" class="sidebar-btn primary">Export JSON</button>
-        </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <header class="top-bar">
-            <div class="breadcrumb">
-                <span class="breadcrumb-label">Project:</span>
-                <span class="breadcrumb-item" id="breadcrumbProject">My World</span>
-                <span class="breadcrumb-separator">›</span>
-                <span class="breadcrumb-item current" id="breadcrumbSection">Characters</span>
-            </div>
-            <div class="top-actions">
-                <button onclick="showSettingsModal()" class="icon-btn" title="Settings">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- Top Action Icons -->
+        <div class="top-actions">
+            <!-- Settings -->
+            <button onclick="showSettingsModal()" class="icon-btn" title="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                     <circle cx="12" cy="12" r="3"></circle>
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                   </svg>
-                </button>
-                <button onclick="copyJSON()" class="icon-btn" title="Copy JSON">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            </button>
+
+            <!-- Copy JSON -->
+            <button onclick="copyJSON()" class="icon-btn" title="Copy JSON">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                     <path d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"></path>
-                  </svg>
-                </button>
-                <button onclick="openJSONPreview()" class="icon-btn" title="Preview">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                </svg>
+            </button>
+
+            <!-- Preview -->
+            <button onclick="openJSONPreview()" class="icon-btn" title="Preview">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
                     <path d="M21.257 10.962c.474.62.474 1.457 0 2.076C19.764 14.987 16.182 19 12 19c-4.182 0-7.764-4.013-9.257-5.962a1.692 1.692 0 0 1 0-2.076C4.236 9.013 7.818 5 12 5c4.182 0 7.764 4.013 9.257 5.962"></path>
                     <circle cx="12" cy="12" r="3"></circle>
-                  </svg>
-                </button>
-            </div>
-        </header>
-
-        <div class="content-area">
-            <div class="content-header">
-                <div class="content-title-section">
-                    <h1 id="contentTitle">Characters</h1>
-                    <p class="content-subtitle" id="contentSubtitle">People and beings in your world.</p>
-                </div>
-                <button class="btn-add-new" onclick="addComponent(currentTab)">
-                    Add New
-                </button>
-            </div>
-
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search by name or ID..." oninput="filterComponents()">
-            </div>
-
-            <div id="content"></div>
+                </svg>
+            </button>
         </div>
-    </main>
+    </header>
 
-    <!-- Load Modal -->
-    <div id="loadModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Import JSON Data</h2>
-                <button class="modal-close" onclick="closeModal('loadModal')">×</button>
+    <!-- Main Editor -->
+    <div class="content-area">
+
+        <!-- Section Header -->
+        <div class="content-header">
+            <div class="content-title-section">
+                <h1 id="contentTitle">Characters</h1>
+                <p id="contentSubtitle" class="content-subtitle">People and beings in your world.</p>
             </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label>Paste Google Drive or GitHub Link:</label>
-                    <input type="text" id="linkInput" placeholder="https://drive.google.com/file/d/.../view">
-                    <div class="help-text">
-                        Google Drive: Share link → converted to direct download<br>
-                        GitHub: File URL → converted to raw.githubusercontent.com
-                    </div>
+
+            <!-- Add Component Button -->
+            <button class="btn-add-new" onclick="addComponent(currentTab)">Add New</button>
+        </div>
+
+        <!-- Search Field -->
+        <div class="search-box">
+            <input id="searchInput" type="text"
+                   placeholder="Search by name or ID..."
+                   oninput="filterComponents()">
+        </div>
+
+        <!-- Dynamic Content Container -->
+        <div id="content"></div>
+    </div>
+</main>
+
+<!-- ============================================
+     IMPORT DATA MODAL
+=============================================== -->
+<div id="loadModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Import JSON Data</h2>
+            <button class="modal-close" onclick="closeModal('loadModal')">×</button>
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Load via Link -->
+            <div class="input-group">
+                <label>Paste Google Drive or GitHub Link:</label>
+                <input id="linkInput" type="text">
+                <div class="help-text">
+                    Google Drive → direct download<br>
+                    GitHub URL → converted to raw
                 </div>
-                <div class="modal-actions">
-                    <button onclick="loadFromLink()" class="btn primary">Load from Link</button>
-                    <button onclick="closeModal('loadModal')" class="btn secondary">Cancel</button>
-                </div>
-                <hr class="divider">
-                <div class="input-group">
-                    <label>Or paste JSON directly:</label>
-                    <textarea id="jsonInput" rows="10" placeholder='{"characters": [], "meta": {...}}'></textarea>
-                </div>
-                <div class="modal-actions">
-                    <button onclick="loadFromJSON()" class="btn primary">Load JSON</button>
-                </div>
-                <div id="loadError"></div>
+            </div>
+
+            <div class="modal-actions">
+                <button onclick="loadFromLink()" class="btn primary">Load from Link</button>
+                <button onclick="closeModal('loadModal')" class="btn secondary">Cancel</button>
+            </div>
+
+            <hr class="divider">
+
+            <!-- Load via Raw JSON -->
+            <div class="input-group">
+                <label>Or paste JSON directly:</label>
+                <textarea id="jsonInput" rows="10"></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button onclick="loadFromJSON()" class="btn primary">Load JSON</button>
+            </div>
+
+            <div id="loadError"></div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================
+     SETTINGS MODAL
+=============================================== -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Settings</h2>
+            <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="input-group">
+                <label>Language Code:</label>
+                <input id="projectLanguage" type="text"
+                       placeholder="en, es, ja..."
+                       oninput="updateMeta('language', this.value)">
+            </div>
+
+            <div class="input-group">
+                <label>Text Direction:</label>
+                <select id="textDirection" onchange="setTextDirection(this.value)">
+                    <option value="ltr">Left-to-Right</option>
+                    <option value="rtl">Right-to-Left</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Theme:</label>
+                <div id="themePicker" class="theme-picker"></div>
+            </div>
+
+            <div class="modal-actions">
+                <button onclick="closeModal('settingsModal')" class="btn secondary">Close</button>
+                <button onclick="resetData()" class="btn danger">Reset All Data</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Settings</h2>
-                <button class="modal-close" onclick="closeModal('settingsModal')">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label>Language Code:</label>
-                    <input type="text" id="projectLanguage" placeholder="en, es, ja, ar, zh, hi, etc." oninput="updateMeta('language', this.value)">
-                    <div class="help-text">Examples: en (English), es (Spanish), ja (Japanese)</div>
-                </div>
-
-                <div class="input-group">
-                    <label>Text Direction:</label>
-                    <select id="textDirection" onchange="setTextDirection(this.value)">
-                        <option value="ltr">Left-to-Right (LTR)</option>
-                        <option value="rtl">Right-to-Left (RTL)</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label>Theme:</label>
-                    <div class="theme-picker" id="themePicker"></div>
-                </div>
-
-                <div class="modal-actions">
-                    <button onclick="closeModal('settingsModal')" class="btn secondary">Close</button>
-                    <button onclick="resetData()" class="btn danger">Reset All Data</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="data.js"></script>
-    <script src="schemas.js"></script>
-    <script src="themes.js"></script>
-    <script src="ui.js"></script>
-    <script src="components.js"></script>
-    <script src="storage.js"></script>
-    <script src="app.js"></script>
+<!-- ============================================
+     JavaScript Modules
+     (Order matters!)
+=============================================== -->
+<script src="data.js"></script>       <!-- Holds actual world data -->
+<script src="schemas.js"></script>    <!-- Data structure definitions -->
+<script src="themes.js"></script>     <!-- Theme list + theme logic -->
+<script src="ui.js"></script>         <!-- DOM rendering helpers -->
+<script src="components.js"></script> <!-- Component templates/forms -->
+<script src="storage.js"></script>    <!-- Import/export, saving/loading -->
+<script src="app.js"></script>        <!-- Main application logic -->
 </body>
 </html>
