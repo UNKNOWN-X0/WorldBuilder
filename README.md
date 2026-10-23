@@ -2,7 +2,7 @@
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-vanilla-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![HTML](https://img.shields.io/badge/HTML5-CSS3-orange)](https://developer.mozilla.org/)
-[![Version](https://img.shields.io/github/v/tag/UNKNOWN-X0/WorldBuilder)](https://github.com/UNKNOWN-X0/WorldBuilder/tags)
+[![Version](https://img.shields.io/badge/version-V1.0-green.svg)](https://github.com/UNKNOWN-X0/WorldBuilder/tags)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A browser-based worldbuilding workspace for organizing characters, events, places, factions, items, lore, and world rules. Link related entries, choose a genre theme, and keep your project in a portable JSON file.
