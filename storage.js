@@ -100,7 +100,7 @@ async function loadFromLink() {
       return;
     }
 
-    data = parsed;
+    data = normalizeImportedWorld(parsed);
     saveToLocalStorage();
     closeModal("loadModal");
     renderSidebarNav();
@@ -135,7 +135,7 @@ function loadFromJSON() {
       return;
     }
 
-    data = parsed;
+    data = normalizeImportedWorld(parsed);
     saveToLocalStorage();
     closeModal("loadModal");
     renderSidebarNav();
@@ -150,10 +150,52 @@ function loadFromJSON() {
   }
 }
 
+const worldCollectionKeys = [
+  "characters",
+  "minorEvents",
+  "majorEvents",
+  "globalEvents",
+  "locations",
+  "factions",
+  "items",
+  "lore",
+  "worldRules",
+];
+
 function validateJSONStructure(obj) {
-  const requiredKeys = ["characters", "locations", "factions", "items"];
-  const hasRequiredKeys = requiredKeys.some((key) => obj.hasOwnProperty(key));
-  return hasRequiredKeys && typeof obj === "object";
+  if (!obj || typeof obj !== "object" || Array.isArray(obj)) return false;
+  if (
+    !["characters", "locations", "factions", "items"].some((key) =>
+      Object.prototype.hasOwnProperty.call(obj, key),
+    )
+  )
+    return false;
+  if (
+    obj.meta !== undefined &&
+    (!obj.meta || typeof obj.meta !== "object" || Array.isArray(obj.meta))
+  )
+    return false;
+  return worldCollectionKeys.every(
+    (key) =>
+      obj[key] === undefined ||
+      (Array.isArray(obj[key]) &&
+        obj[key].every(
+          (item) => item && typeof item === "object" && !Array.isArray(item),
+        )),
+  );
+}
+
+function normalizeImportedWorld(obj) {
+  const result = Object.fromEntries(
+    worldCollectionKeys.map((key) => [key, obj[key] || []]),
+  );
+  result.meta = {
+    title: "My World",
+    language: "en",
+    theme: "fantasy",
+    ...obj.meta,
+  };
+  return result;
 }
 
 function downloadJSON() {

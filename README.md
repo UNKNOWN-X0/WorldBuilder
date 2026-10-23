@@ -393,3 +393,14 @@ Perfect for:
 **Happy Worldbuilding!** 🌍✨
 
 _For questions, feedback, or contributions, please open an issue on GitHub._
+
+## Module map
+
+Already separated by responsibility; keep these boundaries:
+
+- `app.js`: startup and orchestration.
+- `data.js`, `schemas.js`: data definitions and schemas.
+- `storage.js`: persistence.
+- `components.js`, `ui.js`: components and UI behavior.
+- `themes.js`, `styles.css`: themes and appearance.
+- `index.html`: page shell.

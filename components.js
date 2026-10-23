@@ -24,7 +24,7 @@ function duplicateComponent(type, index) {
   const duplicate = JSON.parse(JSON.stringify(original));
   duplicate.id = generateId(type);
   data[type].push(duplicate);
-  renderTabs();
+  renderSidebarNav();
   renderContent();
   saveToLocalStorage();
   showToast(
@@ -39,7 +39,7 @@ function deleteComponent(type, index) {
   lastDeletedType = type;
 
   data[type].splice(index, 1);
-  renderTabs();
+  renderSidebarNav();
   renderContent();
   saveToLocalStorage();
 
@@ -53,7 +53,7 @@ function deleteComponent(type, index) {
 function undoDelete() {
   if (lastDeletedItem && lastDeletedType) {
     data[lastDeletedType].push(lastDeletedItem);
-    renderTabs();
+    renderSidebarNav();
     renderContent();
     saveToLocalStorage();
     showToast("Restore successful", "success");
