@@ -1,81 +1,83 @@
 // UI Rendering functions
 
 function renderSidebarNav() {
-    const navEl = document.getElementById("sidebarNav");
-    if (!navEl) return;
-    
-    navEl.innerHTML = "";
-    
-    Object.keys(schemas).forEach(key => {
-        const schema = schemas[key];
-        const item = document.createElement("div");
-        item.className = "sidebar-nav-item" + (key === currentTab ? " active" : "");
-        item.onclick = () => {
-            currentTab = key;
-            renderSidebarNav();
-            renderContent();
-            updateBreadcrumb();
-        };
-        
-        // Create the content div
-        const contentDiv = document.createElement("div");
-        contentDiv.className = "sidebar-nav-item-content";
-        
-        // Create icon container and set its innerHTML
-        const iconSpan = document.createElement("span");
-        iconSpan.className = "sidebar-nav-item-icon";
-        iconSpan.innerHTML = schema.icon;
-        
-        // Create text span
-        const textSpan = document.createElement("span");
-        textSpan.textContent = schema.label;
-        
-        // Append icon and text to content div
-        contentDiv.appendChild(iconSpan);
-        contentDiv.appendChild(textSpan);
-        
-        // Create count span
-        const countSpan = document.createElement("span");
-        countSpan.className = "sidebar-nav-item-count";
-        countSpan.textContent = data[key].length;
-        
-        // Append everything to item
-        item.appendChild(contentDiv);
-        item.appendChild(countSpan);
-        
-        navEl.appendChild(item);
-    });
+  const navEl = document.getElementById("sidebarNav");
+  if (!navEl) return;
+
+  navEl.innerHTML = "";
+
+  Object.keys(schemas).forEach((key) => {
+    const schema = schemas[key];
+    const item = document.createElement("div");
+    item.className = "sidebar-nav-item" + (key === currentTab ? " active" : "");
+    item.onclick = () => {
+      currentTab = key;
+      renderSidebarNav();
+      renderContent();
+      updateBreadcrumb();
+    };
+
+    // Create the content div
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "sidebar-nav-item-content";
+
+    // Create icon container and set its innerHTML
+    const iconSpan = document.createElement("span");
+    iconSpan.className = "sidebar-nav-item-icon";
+    iconSpan.innerHTML = schema.icon;
+
+    // Create text span
+    const textSpan = document.createElement("span");
+    textSpan.textContent = schema.label;
+
+    // Append icon and text to content div
+    contentDiv.appendChild(iconSpan);
+    contentDiv.appendChild(textSpan);
+
+    // Create count span
+    const countSpan = document.createElement("span");
+    countSpan.className = "sidebar-nav-item-count";
+    countSpan.textContent = data[key].length;
+
+    // Append everything to item
+    item.appendChild(contentDiv);
+    item.appendChild(countSpan);
+
+    navEl.appendChild(item);
+  });
 }
 
 function renderContent() {
-    const content = document.getElementById("content");
-    if (!content) return;
-    
-    const schema = schemas[currentTab];
-    const items = data[currentTab];
-    
-    // Update content title and subtitle
-    updateContentHeader();
-    
-    const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-    const filtered = searchTerm ? items.filter(item => {
+  const content = document.getElementById("content");
+  if (!content) return;
+
+  const schema = schemas[currentTab];
+  const items = data[currentTab];
+
+  // Update content title and subtitle
+  updateContentHeader();
+
+  const searchTerm = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = searchTerm
+    ? items.filter((item) => {
         const searchableText = JSON.stringify(item).toLowerCase();
         return searchableText.includes(searchTerm);
-    }) : items;
+      })
+    : items;
 
-    content.innerHTML = '<div class="component-list" id="componentList"></div>';
+  content.innerHTML = '<div class="component-list" id="componentList"></div>';
 
-    const listEl = document.getElementById("componentList");
-    
-    if (filtered.length === 0 && searchTerm) {
-        listEl.innerHTML = `
+  const listEl = document.getElementById("componentList");
+
+  if (filtered.length === 0 && searchTerm) {
+    listEl.innerHTML = `
             <div class="empty-state">
                 <div class="empty-state-title">No results found</div>
                 <p>Try adjusting your search terms</p>
             </div>
         `;
-    } else if (filtered.length === 0 && !searchTerm) {
-        listEl.innerHTML = `
+  } else if (filtered.length === 0 && !searchTerm) {
+    listEl.innerHTML = `
             <div class="empty-state">
                 <div class="empty-state-title">No entries yet.</div>
                 <p>Create your first ${schema.label.toLowerCase().slice(0, -1)} to get started.</p>
@@ -84,114 +86,114 @@ function renderContent() {
                 </button>
             </div>
         `;
-    } else {
-        filtered.forEach((item, index) => {
-            const actualIndex = items.indexOf(item);
-            listEl.appendChild(createComponentCard(currentTab, item, actualIndex));
-        });
-    }
+  } else {
+    filtered.forEach((item, index) => {
+      const actualIndex = items.indexOf(item);
+      listEl.appendChild(createComponentCard(currentTab, item, actualIndex));
+    });
+  }
 }
 
 function updateContentHeader() {
-    const schema = schemas[currentTab];
-    const titleEl = document.getElementById("contentTitle");
-    const subtitleEl = document.getElementById("contentSubtitle");
-    
-    if (titleEl) titleEl.textContent = schema.label;
-    if (subtitleEl) {
-        const subtitles = {
-            characters: "People and beings in your world.",
-            minorEvents: "Small plot points and scenes.",
-            majorEvents: "Turning points and plot beats.",
-            globalEvents: "World-shaping historical events.",
-            locations: "Places and settings.",
-            factions: "Groups, organizations, and alliances.",
-            items: "Objects, artifacts, and equipment.",
-            lore: "Knowledge, myths, and world mechanics.",
-            worldRules: "Laws and systems governing your world."
-        };
-        subtitleEl.textContent = subtitles[currentTab] || "";
-    }
+  const schema = schemas[currentTab];
+  const titleEl = document.getElementById("contentTitle");
+  const subtitleEl = document.getElementById("contentSubtitle");
+
+  if (titleEl) titleEl.textContent = schema.label;
+  if (subtitleEl) {
+    const subtitles = {
+      characters: "People and beings in your world.",
+      minorEvents: "Small plot points and scenes.",
+      majorEvents: "Turning points and plot beats.",
+      globalEvents: "World-shaping historical events.",
+      locations: "Places and settings.",
+      factions: "Groups, organizations, and alliances.",
+      items: "Objects, artifacts, and equipment.",
+      lore: "Knowledge, myths, and world mechanics.",
+      worldRules: "Laws and systems governing your world.",
+    };
+    subtitleEl.textContent = subtitles[currentTab] || "";
+  }
 }
 
 function updateBreadcrumb() {
-    const projectEl = document.getElementById("breadcrumbProject");
-    const sectionEl = document.getElementById("breadcrumbSection");
-    const schema = schemas[currentTab];
-    
-    if (projectEl) projectEl.textContent = data.meta.title || "My World";
-    if (sectionEl) sectionEl.textContent = schema.label;
+  const projectEl = document.getElementById("breadcrumbProject");
+  const sectionEl = document.getElementById("breadcrumbSection");
+  const schema = schemas[currentTab];
+
+  if (projectEl) projectEl.textContent = data.meta.title || "My World";
+  if (sectionEl) sectionEl.textContent = schema.label;
 }
 
 function updateSidebarTitle() {
-    const titleEl = document.getElementById("sidebarProjectTitle");
-    if (titleEl) titleEl.textContent = data.meta.title || "Novel Org";
+  const titleEl = document.getElementById("sidebarProjectTitle");
+  if (titleEl) titleEl.textContent = data.meta.title || "Novel Org";
 }
 
 // Modal controls
 function showLoadModal() {
-    document.getElementById("loadModal").classList.add("active");
-    document.getElementById("linkInput").value = "";
-    document.getElementById("jsonInput").value = "";
-    document.getElementById("loadError").innerHTML = "";
+  document.getElementById("loadModal").classList.add("active");
+  document.getElementById("linkInput").value = "";
+  document.getElementById("jsonInput").value = "";
+  document.getElementById("loadError").innerHTML = "";
 }
 
 function showSettingsModal() {
-    document.getElementById("settingsModal").classList.add("active");
+  document.getElementById("settingsModal").classList.add("active");
 }
 
 function closeModal(id) {
-    document.getElementById(id).classList.remove("active");
+  document.getElementById(id).classList.remove("active");
 }
 
 function toggleSidebar() {
-    const sidebar = document.querySelector(".sidebar");
-    if (sidebar) {
-        sidebar.classList.toggle("open");
-    }
+  const sidebar = document.querySelector(".sidebar");
+  if (sidebar) {
+    sidebar.classList.toggle("open");
+  }
 }
 
 // Toast notifications
 let toastTimeout;
 function showToast(message, type = "info", duration = 3000) {
-    const existingToasts = document.querySelectorAll(".toast");
-    existingToasts.forEach(t => t.remove());
-    
-    const toast = document.createElement("div");
-    toast.className = "toast";
-    
-    let icon = "ℹ️";
-    if (type === "success") icon = "✓";
-    else if (type === "warning") icon = "⚠️";
-    else if (type === "error") icon = "✗";
-    
-    toast.innerHTML = `<strong>${icon}</strong> ${message}`;
-    document.body.appendChild(toast);
-    
-    if (toastTimeout) clearTimeout(toastTimeout);
-    
-    toastTimeout = setTimeout(() => {
-        toast.remove();
-    }, duration);
+  const existingToasts = document.querySelectorAll(".toast");
+  existingToasts.forEach((t) => t.remove());
+
+  const toast = document.createElement("div");
+  toast.className = "toast";
+
+  let icon = "ℹ️";
+  if (type === "success") icon = "✓";
+  else if (type === "warning") icon = "⚠️";
+  else if (type === "error") icon = "✗";
+
+  toast.innerHTML = `<strong>${icon}</strong> ${message}`;
+  document.body.appendChild(toast);
+
+  if (toastTimeout) clearTimeout(toastTimeout);
+
+  toastTimeout = setTimeout(() => {
+    toast.remove();
+  }, duration);
 }
 
 // Close modals on background click
 document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("modal")) {
-        e.target.classList.remove("active");
-    }
+  if (e.target.classList.contains("modal")) {
+    e.target.classList.remove("active");
+  }
 });
 
 // Keyboard shortcuts
 document.addEventListener("keydown", (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === "s") {
-        e.preventDefault();
-        downloadJSON();
-    }
-    
-    if (e.key === "Escape") {
-        document.querySelectorAll(".modal").forEach(modal => {
-            modal.classList.remove("active");
-        });
-    }
+  if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+    e.preventDefault();
+    downloadJSON();
+  }
+
+  if (e.key === "Escape") {
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.classList.remove("active");
+    });
+  }
 });

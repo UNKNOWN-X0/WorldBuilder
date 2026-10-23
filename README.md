@@ -8,6 +8,7 @@ A comprehensive web-based story and worldbuilding editor for writers, game maste
 ## ✨ Features
 
 ### 📚 Comprehensive Organization
+
 - **Characters** - Track personalities, backstories, relationships, and power levels
 - **Minor Events** - Document small plot points and scenes
 - **Major Events** - Outline turning points and major plot beats
@@ -19,6 +20,7 @@ A comprehensive web-based story and worldbuilding editor for writers, game maste
 - **World Rules** - Define laws governing your universe
 
 ### 🔗 Smart Linking System
+
 - Link characters to factions, events, and locations
 - Connect items to their owners and power sources
 - Reference lore entries from anywhere
@@ -26,13 +28,16 @@ A comprehensive web-based story and worldbuilding editor for writers, game maste
 - Build a connected web of story elements
 
 ### ⚡ Power Level Systems
+
 - **Character Power Levels** - Rank character strength (S-Rank, Level 50, etc.)
 - **Faction Levels** - Rate organizational influence and power
 - **Item Tiers** - Classify equipment rarity and potency
 - **Power Sources** - Link all power to lore explaining magic/abilities
 
 ### 🎨 28 Genre Themes
+
 Choose from professionally designed themes:
+
 - **General**: Light, Fantasy, Dark Fantasy, Adventure
 - **Asian Fiction**: Xianxia, Wuxia, Cultivation
 - **Sci-Fi**: Sci-Fi, Cyberpunk, Space Opera
@@ -44,6 +49,7 @@ Choose from professionally designed themes:
 - **Other**: Magical Realism, Comedy
 
 ### 💾 Flexible Data Management
+
 - **Import from Google Drive** - Load JSON via share links
 - **Import from GitHub** - Load from raw URLs
 - **Export to JSON** - Download your entire world
@@ -52,11 +58,13 @@ Choose from professionally designed themes:
 - **Preview Mode** - View raw JSON in new tab
 
 ### 🌐 Multi-Language Support
+
 - Write in any language (UTF-8 support)
 - RTL/LTR text direction toggle
 - Supports: English, Spanish, Japanese, Arabic, Chinese, Hindi, and 100+ languages
 
 ### 🎯 User-Friendly Interface
+
 - Clean sidebar navigation
 - Breadcrumb trail
 - Search and filter
@@ -71,6 +79,7 @@ Choose from professionally designed themes:
 ### Quick Start (Local Use)
 
 1. **Download all files** to a folder:
+
    ```
    world-builder/
    ├── index.html
@@ -91,6 +100,7 @@ Choose from professionally designed themes:
 ### Hosting on GitHub Pages
 
 1. **Create a new GitHub repository**
+
    ```bash
    git init
    git add .
@@ -125,6 +135,7 @@ Choose from professionally designed themes:
 ### Linking Components
 
 **Link by ID:**
+
 ```
 Character relationships: "C2, C3, F1"
 - C2, C3 = other character IDs
@@ -132,6 +143,7 @@ Character relationships: "C2, C3, F1"
 ```
 
 **Clickable Tags:**
+
 - Links automatically become clickable tags
 - Click to navigate to that component
 - See names instead of just IDs
@@ -139,6 +151,7 @@ Character relationships: "C2, C3, F1"
 ### Creating a Power System
 
 1. **Create a Lore entry** explaining your magic system:
+
    ```
    ID: LO1
    Topic: Dragon Blood System
@@ -148,6 +161,7 @@ Character relationships: "C2, C3, F1"
    ```
 
 2. **Link characters to it:**
+
    ```
    Character: Kai
    Power Level: S-Rank
@@ -155,11 +169,12 @@ Character relationships: "C2, C3, F1"
    ```
 
 3. **Link factions and items too:**
+
    ```
    Faction: Dragon Clan
    Faction Level: Major Power
    Power Source: LO1
-   
+
    Item: Dragon Fang Sword
    Item Level: Legendary
    Power Source: LO1
@@ -168,6 +183,7 @@ Character relationships: "C2, C3, F1"
 ### Importing & Exporting
 
 **From Google Drive:**
+
 1. Upload your JSON to Google Drive
 2. Right-click → Get shareable link
 3. Click **"📂 Import"** in World Builder
@@ -175,6 +191,7 @@ Character relationships: "C2, C3, F1"
 5. Click "Load from Link"
 
 **From GitHub:**
+
 1. Push your JSON to a public repo
 2. Open the file on GitHub
 3. Click "Raw" button
@@ -182,6 +199,7 @@ Character relationships: "C2, C3, F1"
 5. Paste into World Builder's import
 
 **Export:**
+
 - Click **"💾 Export JSON"** to download
 - Click **"📋 Copy JSON"** to copy to clipboard
 - Click **"👁️ Preview JSON"** to view in new tab
@@ -197,10 +215,12 @@ Character relationships: "C2, C3, F1"
 ### Changing Themes
 
 **In Sidebar:**
+
 1. Select theme from dropdown
 2. Changes apply instantly
 
 **In Settings:**
+
 1. Click **⚙️ Settings** button
 2. Browse all 28 themes
 3. Click any theme to apply
@@ -208,6 +228,7 @@ Character relationships: "C2, C3, F1"
 ### Text Direction (RTL/LTR)
 
 For Arabic, Hebrew, and other RTL languages:
+
 1. Go to **Settings**
 2. Change "Text Direction" to RTL
 3. Layout flips for better readability
@@ -230,6 +251,7 @@ world-builder/
 ## 🔧 Technical Details
 
 ### Technology Stack
+
 - **HTML5** - Structure
 - **CSS3** - Styling with CSS variables
 - **Vanilla JavaScript** - No frameworks or dependencies
@@ -237,6 +259,7 @@ world-builder/
 - **Fetch API** - Load from external sources
 
 ### Browser Compatibility
+
 - ✅ Chrome 90+
 - ✅ Firefox 88+
 - ✅ Safari 14+
@@ -245,6 +268,7 @@ world-builder/
 ### Data Format
 
 JSON structure:
+
 ```json
 {
   "characters": [...],
@@ -268,6 +292,7 @@ JSON structure:
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
+
 - Report bugs
 - Suggest features
 - Submit pull requests
@@ -304,26 +329,31 @@ SOFTWARE.
 ## 🆘 Troubleshooting
 
 ### JSON won't load from Google Drive
+
 - Ensure file is set to "Anyone with link can view"
 - Try using the direct share link, not the preview link
 - If it still fails, copy/paste JSON directly
 
 ### JSON won't load from GitHub
+
 - Ensure repository is public
 - Use the raw URL (click "Raw" button)
 - Private repos require authentication and won't work
 
 ### Data disappeared
+
 - Check browser localStorage (dev tools → Application → Local Storage)
 - Make sure you didn't clear browser data
 - Always export JSON regularly as backup
 
 ### Theme not applying
+
 - Try refreshing the page
 - Check if JavaScript is enabled
 - Clear browser cache
 
 ### Mobile display issues
+
 - Use landscape orientation for better experience
 - Some features work best on desktop
 - Sidebar can be toggled with ☰ button
@@ -331,6 +361,7 @@ SOFTWARE.
 ## 🎯 Use Cases
 
 Perfect for:
+
 - **Novel Writers** - Track complex storylines
 - **Game Masters** - Organize D&D/RPG campaigns
 - **Screenwriters** - Manage characters and plot
@@ -361,4 +392,4 @@ Perfect for:
 
 **Happy Worldbuilding!** 🌍✨
 
-*For questions, feedback, or contributions, please open an issue on GitHub.*
+_For questions, feedback, or contributions, please open an issue on GitHub._
