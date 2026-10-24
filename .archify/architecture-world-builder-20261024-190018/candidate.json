@@ -2,7 +2,7 @@
   "schema_version": 1,
   "diagram_type": "architecture",
   "meta": {
-    "title": "WorldBuilder · browser architecture",
+    "title": "WorldBuilder · browser application architecture",
     "locale": "en",
     "output": ".archify/architecture-world-builder-20261024-190018/world-builder.html",
     "quality_profile": "showcase",
@@ -10,7 +10,7 @@
       "url": "https://github.com/UNKNOWN-X0/WorldBuilder.git",
       "provider": "github",
       "link_mode": "web",
-      "revision": "c4a63033fb69146d38185fb216d8e8f9ccc535dd"
+      "revision": "a718b1852f7e182518f1999135d7feb4e87aa37c"
     }
   },
   "components": [
@@ -18,34 +18,81 @@
       "id": "author",
       "type": "external",
       "label": "Worldbuilder",
-      "sublabel": "creates a story world",
+      "sublabel": "creates and edits story records",
       "pos": [
         40,
-        300
+        340
       ],
       "size": [
-        160,
-        80
+        120,
+        74
       ],
       "sources": [
         {
           "path": "README.md",
-          "line": 14,
+          "line": 8,
           "end_line": 20
         }
       ]
     },
     {
-      "id": "static_host",
+      "id": "source_repo",
       "type": "cloud",
-      "label": "GitHub Pages",
-      "sublabel": "static HTML, CSS, and JavaScript",
+      "label": "GitHub repository",
+      "sublabel": "source and workflow configuration",
       "pos": [
-        290,
-        70
+        40,
+        90
       ],
       "size": [
-        210,
+        185,
+        80
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 1,
+          "end_line": 8
+        },
+        {
+          "path": "README.md",
+          "line": 45,
+          "end_line": 55
+        }
+      ]
+    },
+    {
+      "id": "jekyll_ci",
+      "type": "cloud",
+      "label": "GitHub Actions",
+      "sublabel": "Jekyll Docker build",
+      "pos": [
+        320,
+        90
+      ],
+      "size": [
+        190,
+        84
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 1,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "id": "pages_host",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "serves the static app",
+      "pos": [
+        215,
+        335
+      ],
+      "size": [
+        160,
         84
       ],
       "sources": [
@@ -61,59 +108,28 @@
       ]
     },
     {
-      "id": "editor_ui",
+      "id": "app_shell",
       "type": "frontend",
-      "label": "Editor page",
-      "sublabel": "sections, search and JSON import",
+      "label": "HTML app shell",
+      "sublabel": "navigation, settings, ordered scripts",
       "pos": [
-        290,
-        285
+        445,
+        330
       ],
       "size": [
-        220,
-        100
+        160,
+        95
       ],
       "sources": [
         {
           "path": "index.html",
-          "line": 83,
-          "end_line": 101
+          "line": 45,
+          "end_line": 91
         },
         {
           "path": "index.html",
           "line": 181,
           "end_line": 210
-        },
-        {
-          "path": "index.html",
-          "line": 213,
-          "end_line": 259
-        }
-      ]
-    },
-    {
-      "id": "app_modules",
-      "type": "frontend",
-      "label": "App and UI modules",
-      "sublabel": "startup, editing and rendering",
-      "pos": [
-        700,
-        285
-      ],
-      "size": [
-        220,
-        100
-      ],
-      "sources": [
-        {
-          "path": "app.js",
-          "line": 4,
-          "end_line": 20
-        },
-        {
-          "path": "components.js",
-          "line": 3,
-          "end_line": 19
         },
         {
           "path": "index.html",
@@ -123,80 +139,147 @@
       ]
     },
     {
-      "id": "world_model",
+      "id": "app_init",
       "type": "frontend",
-      "label": "World data and schemas",
-      "sublabel": "world collections and field definitions",
+      "label": "App initialization",
+      "sublabel": "loads state and starts the interface",
       "pos": [
-        1090,
-        285
+        665,
+        330
       ],
       "size": [
-        210,
+        160,
+        95
+      ],
+      "sources": [
+        {
+          "path": "app.js",
+          "line": 4,
+          "end_line": 26
+        },
+        {
+          "path": "app.js",
+          "line": 48,
+          "end_line": 53
+        }
+      ]
+    },
+    {
+      "id": "editor_ui",
+      "type": "frontend",
+      "label": "Navigation and entry editor",
+      "sublabel": "search, edit, link and navigate records",
+      "pos": [
+        885,
+        330
+      ],
+      "size": [
+        175,
+        100
+      ],
+      "sources": [
+        {
+          "path": "ui.js",
+          "line": 3,
+          "end_line": 95
+        },
+        {
+          "path": "components.js",
+          "line": 3,
+          "end_line": 100
+        },
+        {
+          "path": "components.js",
+          "line": 109,
+          "end_line": 160
+        }
+      ]
+    },
+    {
+      "id": "world_data",
+      "type": "frontend",
+      "label": "World data",
+      "sublabel": "collections and link schemas",
+      "pos": [
+        1105,
+        330
+      ],
+      "size": [
+        160,
         100
       ],
       "sources": [
         {
           "path": "data.js",
           "line": 1,
-          "end_line": 22
+          "end_line": 51
         },
         {
           "path": "schemas.js",
           "line": 1,
           "end_line": 38
+        },
+        {
+          "path": "schemas.js",
+          "line": 82,
+          "end_line": 220
         }
       ]
     },
     {
-      "id": "storage_module",
+      "id": "themes",
       "type": "frontend",
-      "label": "Storage and JSON module",
-      "sublabel": "autosave, import validation and export",
+      "label": "Themes and direction",
+      "sublabel": "theme styling and LTR / RTL",
       "pos": [
-        700,
-        535
+        665,
+        570
       ],
       "size": [
-        220,
-        100
+        160,
+        95
       ],
       "sources": [
         {
-          "path": "storage.js",
-          "line": 1,
-          "end_line": 26
+          "path": "themes.js",
+          "line": 238,
+          "end_line": 274
         },
         {
-          "path": "storage.js",
-          "line": 43,
-          "end_line": 115
+          "path": "themes.js",
+          "line": 276,
+          "end_line": 318
         },
         {
-          "path": "storage.js",
-          "line": 201,
-          "end_line": 249
+          "path": "index.html",
+          "line": 276,
+          "end_line": 298
         }
       ]
     },
     {
-      "id": "browser_storage",
+      "id": "local_storage",
       "type": "database",
       "label": "Browser localStorage",
-      "sublabel": "world data stays in the browser origin",
+      "sublabel": "worldBuilderData and textDirection keys",
       "pos": [
-        1060,
-        535
+        885,
+        570
       ],
       "size": [
-        210,
-        100
+        180,
+        95
       ],
       "sources": [
         {
           "path": "storage.js",
           "line": 1,
           "end_line": 26
+        },
+        {
+          "path": "themes.js",
+          "line": 314,
+          "end_line": 318
         },
         {
           "path": "README.md",
@@ -206,17 +289,48 @@
       ]
     },
     {
-      "id": "json_exchange",
-      "type": "external",
-      "label": "JSON backups and sources",
-      "sublabel": "pasted data, shared URLs and export",
+      "id": "storage_module",
+      "type": "frontend",
+      "label": "Storage and JSON",
+      "sublabel": "save, import and export JSON",
       "pos": [
-        1370,
-        535
+        1105,
+        570
       ],
       "size": [
-        220,
-        100
+        160,
+        95
+      ],
+      "sources": [
+        {
+          "path": "storage.js",
+          "line": 1,
+          "end_line": 26
+        },
+        {
+          "path": "storage.js",
+          "line": 44,
+          "end_line": 115
+        },
+        {
+          "path": "storage.js",
+          "line": 118,
+          "end_line": 199
+        }
+      ]
+    },
+    {
+      "id": "remote_json",
+      "type": "external",
+      "label": "Remote JSON sources",
+      "sublabel": "Drive or raw GitHub",
+      "pos": [
+        40,
+        700
+      ],
+      "size": [
+        175,
+        95
       ],
       "sources": [
         {
@@ -226,13 +340,8 @@
         },
         {
           "path": "storage.js",
-          "line": 54,
+          "line": 44,
           "end_line": 73
-        },
-        {
-          "path": "storage.js",
-          "line": 201,
-          "end_line": 215
         }
       ]
     }
@@ -240,86 +349,173 @@
   "boundaries": [
     {
       "kind": "region",
-      "label": "Browser application · no application server",
+      "label": "Browser application runtime · static client",
       "wraps": [
+        "app_shell",
+        "app_init",
         "editor_ui",
-        "app_modules",
-        "world_model",
-        "storage_module",
-        "browser_storage"
+        "world_data",
+        "themes",
+        "local_storage",
+        "storage_module"
       ],
-      "pad": 30
+      "pad": 40
     }
   ],
   "connections": [
     {
-      "id": "author-edits",
+      "id": "author-opens",
       "from": "author",
-      "to": "editor_ui",
-      "label": "edits world"
+      "to": "pages_host",
+      "label": "opens",
+      "variant": "emphasis"
     },
     {
-      "id": "host-serves",
-      "from": "static_host",
-      "to": "editor_ui",
-      "label": "serves UI"
+      "id": "pages-serves",
+      "from": "pages_host",
+      "to": "app_shell",
+      "label": "hosts"
     },
     {
-      "id": "ui-events",
+      "id": "shell-loads",
+      "from": "app_shell",
+      "to": "app_init",
+      "label": "loads"
+    },
+    {
+      "id": "init-starts-editor",
+      "from": "app_init",
+      "to": "editor_ui",
+      "label": "starts"
+    },
+    {
+      "id": "editor-world-data",
       "from": "editor_ui",
-      "to": "app_modules",
-      "label": "editor events and controls"
+      "to": "world_data",
+      "label": "edits"
     },
     {
-      "id": "model-write",
-      "from": "app_modules",
-      "to": "world_model",
-      "label": "updates world records"
-    },
-    {
-      "id": "model-read",
-      "from": "world_model",
-      "to": "app_modules",
-      "label": "state for rendering"
-    },
-    {
-      "id": "load-save",
-      "from": "app_modules",
+      "id": "init-loads-storage",
+      "from": "app_init",
       "to": "storage_module",
-      "label": "load and save world"
+      "label": "loads"
     },
     {
-      "id": "autosave",
+      "id": "editor-saves",
+      "from": "editor_ui",
+      "to": "storage_module",
+      "label": "saves"
+    },
+    {
+      "id": "imports-normalize",
       "from": "storage_module",
-      "to": "browser_storage",
-      "label": "writes saved data"
+      "to": "world_data",
+      "label": "imports"
     },
     {
-      "id": "restore",
-      "from": "browser_storage",
-      "to": "storage_module",
-      "label": "restore saved data"
-    },
-    {
-      "id": "import-json",
-      "from": "json_exchange",
-      "to": "storage_module",
-      "label": "paste or fetch JSON"
-    },
-    {
-      "id": "export-json",
+      "id": "storage-writes",
       "from": "storage_module",
-      "to": "json_exchange",
-      "label": "download or copy JSON"
+      "to": "local_storage",
+      "label": "saves"
+    },
+    {
+      "id": "storage-restores",
+      "from": "local_storage",
+      "to": "storage_module",
+      "label": "loads"
+    },
+    {
+      "id": "settings-select-theme",
+      "from": "app_shell",
+      "to": "themes",
+      "label": "settings"
+    },
+    {
+      "id": "init-applies-theme",
+      "from": "app_init",
+      "to": "themes",
+      "label": "restores"
+    },
+    {
+      "id": "theme-updates-editor",
+      "from": "themes",
+      "to": "editor_ui",
+      "label": "styles"
+    },
+    {
+      "id": "theme-direction-key",
+      "from": "themes",
+      "to": "local_storage",
+      "label": "RTL"
+    },
+    {
+      "id": "remote-import",
+      "from": "remote_json",
+      "to": "storage_module",
+      "label": "fetch",
+      "fromSide": "right",
+      "toSide": "bottom",
+      "via": [
+        [
+          260,
+          747.5
+        ],
+        [
+          260,
+          700
+        ],
+        [
+          1185,
+          700
+        ]
+      ]
+    },
+    {
+      "id": "repo-ci",
+      "from": "source_repo",
+      "to": "jekyll_ci",
+      "label": "push / PR"
     }
   ],
   "cards": [
     {
       "dot": "cyan",
+      "title": "Story model and cross-links",
+      "items": [
+        "The live world object groups characters, three event scopes, locations, factions, items, lore, world rules and project metadata. Schemas define field types and permitted link targets. (data.js:1-22; schemas.js:1-38, 82-220)",
+        "Records link by ID. Link previews resolve IDs against the selected target categories and navigate to the matching entry. (data.js:44-51; components.js:392-404; README.md:14-16)"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Editing behavior",
+      "items": [
+        "Adding an entry creates a type-prefixed ID; duplication copies the record with a new ID. Delete keeps one last-deleted record for the undo action. (data.js:24-32; components.js:3-67)",
+        "Field edits update the in-memory world and save when confirmed. Search filters the active collection; category navigation and linked IDs rerender and move to the selected entry. (components.js:69-100, 109-129; ui.js:3-95; README.md:15-17)"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Import path and validation",
+      "items": [
+        "Pasted JSON and fetched JSON are parsed, checked for a valid world shape, normalized with missing collections and metadata defaults, then saved before the interface is refreshed. (storage.js:44-115, 118-199)",
+        "Google Drive share URLs are converted to download URLs; GitHub blob URLs are changed to raw URLs. The browser rejects HTTP failures, HTML responses and invalid JSON structures before replacing the current world. (storage.js:54-114, 129-150; README.md:32-38)"
+      ]
+    },
+    {
+      "dot": "amber",
       "title": "Persistence and portability",
       "items": [
-        "Autosaved world data stays in this browser's localStorage; clearing that storage removes its local copy. (README.md:65-67; storage.js:1-26)",
-        "JSON exports are portable backups; linked imports fetch from Drive or raw GitHub and need browser-accessible files. (README.md:32-38; storage.js:54-83, 201-215)"
+        "The world is stored under worldBuilderData in this browser. Missing or malformed saved data falls back to the sample template; clearing browser storage can remove the local copy. (storage.js:1-26; README.md:65-67)",
+        "Export creates a JSON download, copies JSON to the clipboard with a legacy copy fallback, or opens a blob URL preview in a new tab. (storage.js:201-249; README.md:32-36)"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Themes, direction and hosting",
+      "items": [
+        "The README lists 28 themes. Applying a theme changes CSS variables and the dark-theme class, then persists the chosen theme in world metadata. Text direction is stored under a separate localStorage key. (README.md:14-18; themes.js:238-274, 314-318)",
+        "GitHub Pages hosts the static app. The Jekyll workflow runs a Docker build for main pushes and pull requests; its workflow file contains no deployment step. The app can also run from a local index.html without a package install or build step. (README.md:24-30; .github/workflows/jekyll-docker.yml:1-19)"
       ]
     }
   ]

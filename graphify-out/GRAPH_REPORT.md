@@ -1,117 +1,131 @@
-# Graph Report - WorldBuilder (2026-10-24)
+# Graph Report - WorldBuilder  (2026-10-25)
 
 ## Corpus Check
-
-- Corpus is ~7,023 words - fits in a single context window. You may not need a graph.
+- 24 files · ~80,394 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 3 file(s) not represented in the graph (top: (none) 2, .css 1)
 
 ## Summary
+- 128 nodes · 223 edges · 14 communities (11 shown, 3 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.85)
+- Token cost: 0 input · 0 output
 
-- 124 nodes · 141 edges · 14 communities (10 shown, 4 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.85)
-- Token usage: unavailable (subagent usage metadata was not returned)
+## Refresh Notes
+- `refresh_classic_calls.py` verifies 80 call sites against source lines, restoring cross-file calls across the ordered classic scripts and inline HTML handlers. The extractor misses these shared-global calls.
+- The graph has 223 links (222 extracted, 1 inferred); Graphify HTML renders the same 223 edges, with no duplicate endpoint pairs or dangling nodes.
+- The ≤1-connection warning is a heuristic across code, documentation and concept nodes; reviewed helper leaves are retained without speculative links.
+
+## Graph Freshness
+- Built from commit: `a718b185`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-
 - Component Editing
 - CI Workflow
 - Import Export Storage
 - Product Overview
-- UI Navigation Modals
+- Interface and Import Controls
 - Automated Tests
-- Interface Features
+- Theme and Text Direction
 - Application Modules
 - World Data Helpers
 - Architecture Data Flow
-- Theme and Direction
+- Search and Main Editor
 - Portability and Privacy
-- Application Startup
 - Schema Definitions
+- Project instructions
 
 ## God Nodes (most connected - your core abstractions)
-
-1. `Ordered JavaScript module loading` - 7 edges
-2. `loadFromLink()` - 5 edges
-3. `loadFromJSON()` - 5 edges
-4. `renderSidebarNav()` - 5 edges
-5. `Project file responsibilities` - 5 edges
-6. `steps` - 4 edges
-7. `createComponentCard()` - 4 edges
-8. `renderFieldsView()` - 4 edges
-9. `renderLinksPreview()` - 4 edges
-10. `saveToLocalStorage()` - 4 edges
+1. `renderSidebarNav()` - 16 edges
+2. `renderContent()` - 14 edges
+3. `loadFromLink()` - 12 edges
+4. `loadFromJSON()` - 12 edges
+5. `saveToLocalStorage()` - 11 edges
+6. `init()` - 10 edges
+7. `createComponentCard()` - 9 edges
+8. `resetData()` - 8 edges
+9. `applyTheme()` - 8 edges
+10. `updateBreadcrumb()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
-
-- `World Builder application` --references--> `World Builder application interface` [EXTRACTED]
-  README.md → index.html
+- `Reset all data control` --calls--> `resetData()`  [EXTRACTED]
+  index.html → storage.js
+- `Import and export controls` --calls--> `showLoadModal()`  [EXTRACTED]
+  index.html → ui.js
+- `Main content editor` --calls--> `addComponent()`  [EXTRACTED]
+  index.html → components.js
+- `Import JSON data modal` --calls--> `loadFromLink()`  [EXTRACTED]
+  index.html → storage.js
+- `Import JSON data modal` --calls--> `loadFromJSON()`  [EXTRACTED]
+  index.html → storage.js
 
 ## Import Cycles
-
 - None detected.
 
-## Communities (14 total, 4 thin omitted)
+## Communities (14 total, 3 thin omitted)
 
 ### Community 0 - "Component Editing"
-
-Cohesion: 0.16
-Nodes (9): collapseDetails(), createComponentCard(), expandDetails(), renderFieldsEdit(), renderFieldsView(), renderLinksPreview(), saveEdit(), toggleEditMode() (+1 more)
+Cohesion: 0.24
+Nodes (20): addComponent(), cancelEdit(), collapseDetails(), createComponentCard(), deleteComponent(), duplicateComponent(), expandDetails(), navigateToComponent() (+12 more)
 
 ### Community 1 - "CI Workflow"
-
 Cohesion: 0.14
 Nodes (13): runs-on, steps, jobs, build, name, branches, branches, name (+5 more)
 
 ### Community 2 - "Import Export Storage"
-
-Cohesion: 0.25
-Nodes (9): loadFromJSON(), loadFromLink(), normalizeImportedWorld(), resetData(), saveToLocalStorage(), updateMeta(), updateMetaFields(), validateJSONStructure() (+1 more)
+Cohesion: 0.22
+Nodes (17): init(), populateThemeSelect(), initializeTemplateData(), Import and export controls, copyJSON(), downloadJSON(), loadFromJSON(), loadFromLink() (+9 more)
 
 ### Community 3 - "Product Overview"
-
-Cohesion: 0.17
-Nodes (12): Import via Google Drive or GitHub link, Import and export controls, Import JSON data modal, Import pasted JSON, World Builder application interface, Search, filter, duplicate, edit, and undo, Genre themes and text direction, Links between entries by ID (+4 more)
-
-### Community 4 - "UI Navigation Modals"
-
-Cohesion: 0.24
-Nodes (4): renderContent(), renderSidebarNav(), updateBreadcrumb(), updateContentHeader()
-
-### Community 6 - "Interface Features"
-
 Cohesion: 0.25
-Nodes (9): Dynamic component editor area, Search entries by name or ID, Main content editor, Project language and text direction, Project title, author, and theme metadata, Project structure navigation, Reset all data control, Settings modal (+1 more)
+Nodes (8): World Builder application interface, Search, filter, duplicate, edit, and undo, Genre themes and text direction, Links between entries by ID, No build step or package installation, Structured world elements, UTF-8 multilingual projects, World Builder application
+
+### Community 4 - "Interface and Import Controls"
+Cohesion: 0.14
+Nodes (14): Import via Google Drive or GitHub link, Import JSON data modal, Project title, author, and theme metadata, Project structure navigation, Import pasted JSON, Reset all data control, Settings modal, Theme picker (+6 more)
+
+### Community 6 - "Theme and Text Direction"
+Cohesion: 0.43
+Nodes (6): Project language and text direction, applyTheme(), renderThemePicker(), setTextDirection(), themes, updateThemePickerUI()
 
 ### Community 7 - "Application Modules"
-
 Cohesion: 0.25
 Nodes (8): Application orchestration module, Component templates and forms, World data module, Ordered JavaScript module loading, Data schema module, Import, export, and saving module, Theme logic module, DOM rendering helpers
 
 ### Community 9 - "Architecture Data Flow"
-
 Cohesion: 0.33
 Nodes (6): Browser persistence and JSON transfer, Data model and component definitions, Entry forms, rendering, and interface behavior, Project file responsibilities, Import and functionality regression tests, Themes and visual styling
 
-### Community 10 - "Theme and Direction"
-
-Cohesion: 0.53
-Nodes (4): applyTheme(), renderThemePicker(), themes, updateThemePickerUI()
+### Community 10 - "Search and Main Editor"
+Cohesion: 0.67
+Nodes (4): filterComponents(), Dynamic component editor area, Search entries by name or ID, Main content editor
 
 ### Community 11 - "Portability and Privacy"
-
 Cohesion: 0.67
 Nodes (4): Browser local storage, Local data privacy and backups, Portable JSON world file, Import from Google Drive or raw GitHub URL
 
-## Knowledge Gaps
+### Community 14 - "Project instructions"
+Cohesion: 0.50
+Nodes (3): Local workflow, Project data, Project instructions
 
-- **22 isolated node(s):** `Links between entries by ID`, `Genre themes and text direction`, `Search, filter, duplicate, edit, and undo`, `Import from Google Drive or raw GitHub URL`, `UTF-8 multilingual projects` (+17 more)
-  These have ≤1 connection - possible missing edges. (Counts symbols only; 60 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+## Knowledge Gaps
+- **20 isolated node(s):** `Import from Google Drive or raw GitHub URL`, `Search, filter, duplicate, edit, and undo`, `Genre themes and text direction`, `Links between entries by ID`, `No build step or package installation` (+15 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 40 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **3 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
-
 _Questions this graph is uniquely positioned to answer:_
 
-- **What connects `Links between entries by ID`, `Genre themes and text direction`, `Search, filter, duplicate, edit, and undo` to the rest of the system?**
-  _22 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `Import and export controls` connect `Import Export Storage` to `Product Overview`, `ui.js`?**
+  _High betweenness centrality (0.075) - this node is a cross-community bridge._
+- **What connects `Import from Google Drive or raw GitHub URL`, `Search, filter, duplicate, edit, and undo`, `Genre themes and text direction` to the rest of the system?**
+  _20 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `CI Workflow` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
+- **Why does `Import JSON data modal` connect `ui.js` to `Import Export Storage`?**
+  _High betweenness centrality (0.064) - this node is a cross-community bridge._
+- **Should `ui.js` be split into smaller, more focused modules?**
+  _Cohesion score 0.14166666666666666 - nodes in this community are weakly interconnected._
+- **Why does `World Builder application interface` connect `Product Overview` to `Import Export Storage`?**
+  _High betweenness centrality (0.063) - this node is a cross-community bridge._

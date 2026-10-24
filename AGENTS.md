@@ -1,11 +1,16 @@
 # Project instructions
 
-Follow the shared workspace rules in [workspace AGENTS.md](../../AGENTS.md).
+This file follows the Project AGENTS standard in
+[workspace AGENTS.md](../../AGENTS.md). It records verified project-specific facts
+and supplements shared behavior and workflows. See [ADD-ONS.md](../../ADD-ONS.md)
+for the complete workspace add-on inventory and upkeep notes; it is a catalog,
+not a separate workflow guide.
 
-## Graphify
+## Project data
 
-This project has a codebase graph at `graphify-out/graph.json`. Use `graphify query` for codebase questions before searching source files. After code changes, run `graphify update .` to refresh it.
+- **Graphify:** This repository has a persistent index at `graphify-out/graph.json`. Follow the shared Graphify guidance in workspace AGENTS.md.
+- **Archify:** Diagrams for this repository belong in its `.archify/` folder. Follow the shared Archify guidance in workspace AGENTS.md; HTML diagrams are snapshots.
 
-## Archify
+## Local workflow
 
-Use the installed Archify skill when a diagram is useful for this project. Save each artifact under `.archify/<type>-<slug>-<YYYYMMDD-HHMMSS>/` in this project, keeping its candidate, final HTML, and verification evidence with that artifact. Treat the HTML as a snapshot and regenerate it when the represented project facts change. Do not move or rename delivered files because receipts refer to their paths.
+- After `graphify update .`, run `python3 graphify-out/refresh_classic_calls.py` and `graphify cluster-only .` to restore verified calls between the ordered classic scripts and refresh the graph view.
