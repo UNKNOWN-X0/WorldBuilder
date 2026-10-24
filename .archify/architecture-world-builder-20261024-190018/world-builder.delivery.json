@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "fb767037-17a1-48e1-b327-9c245ae90cde",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+  "output": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+  "specification": {
+    "sha256": "bfc998138ad32e9fa5460fe7125593f5dac2f705588375b1ed1d97354c0dfd7d",
+    "bytes": 6706
+  },
+  "artifact": {
+    "sha256": "014569c0298894b45684dc4ae67478404d53e550b0366dab714918efa49a5ca7",
+    "bytes": 830670
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "WorldBuilder · browser architecture",
+    "locale": "en",
+    "output": ".archify/architecture-world-builder-20261024-190018/world-builder.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/UNKNOWN-X0/WorldBuilder.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "c4a63033fb69146d38185fb216d8e8f9ccc535dd"
+    }
+  },
+  "components": [
+    {
+      "id": "author",
+      "type": "external",
+      "label": "Worldbuilder",
+      "sublabel": "creates a story world",
+      "pos": [
+        40,
+        300
+      ],
+      "size": [
+        160,
+        80
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 14,
+          "end_line": 20
+        }
+      ]
+    },
+    {
+      "id": "static_host",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "static HTML, CSS, and JavaScript",
+      "pos": [
+        290,
+        70
+      ],
+      "size": [
+        210,
+        84
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 10
+        },
+        {
+          "path": "README.md",
+          "line": 24,
+          "end_line": 30
+        }
+      ]
+    },
+    {
+      "id": "editor_ui",
+      "type": "frontend",
+      "label": "Editor page",
+      "sublabel": "sections, search and JSON import",
+      "pos": [
+        290,
+        285
+      ],
+      "size": [
+        220,
+        100
+      ],
+      "sources": [
+        {
+          "path": "index.html",
+          "line": 83,
+          "end_line": 101
+        },
+        {
+          "path": "index.html",
+          "line": 181,
+          "end_line": 210
+        },
+        {
+          "path": "index.html",
+          "line": 213,
+          "end_line": 259
+        }
+      ]
+    },
+    {
+      "id": "app_modules",
+      "type": "frontend",
+      "label": "App and UI modules",
+      "sublabel": "startup, editing and rendering",
+      "pos": [
+        700,
+        285
+      ],
+      "size": [
+        220,
+        100
+      ],
+      "sources": [
+        {
+          "path": "app.js",
+          "line": 4,
+          "end_line": 20
+        },
+        {
+          "path": "components.js",
+          "line": 3,
+          "end_line": 19
+        },
+        {
+          "path": "index.html",
+          "line": 312,
+          "end_line": 330
+        }
+      ]
+    },
+    {
+      "id": "world_model",
+      "type": "frontend",
+      "label": "World data and schemas",
+      "sublabel": "world collections and field definitions",
+      "pos": [
+        1090,
+        285
+      ],
+      "size": [
+        210,
+        100
+      ],
+      "sources": [
+        {
+          "path": "data.js",
+          "line": 1,
+          "end_line": 22
+        },
+        {
+          "path": "schemas.js",
+          "line": 1,
+          "end_line": 38
+        }
+      ]
+    },
+    {
+      "id": "storage_module",
+      "type": "frontend",
+      "label": "Storage and JSON module",
+      "sublabel": "autosave, import validation and export",
+      "pos": [
+        700,
+        535
+      ],
+      "size": [
+        220,
+        100
+      ],
+      "sources": [
+        {
+          "path": "storage.js",
+          "line": 1,
+          "end_line": 26
+        },
+        {
+          "path": "storage.js",
+          "line": 43,
+          "end_line": 115
+        },
+        {
+          "path": "storage.js",
+          "line": 201,
+          "end_line": 249
+        }
+      ]
+    },
+    {
+      "id": "browser_storage",
+      "type": "database",
+      "label": "Browser localStorage",
+      "sublabel": "world data stays in the browser origin",
+      "pos": [
+        1060,
+        535
+      ],
+      "size": [
+        210,
+        100
+      ],
+      "sources": [
+        {
+          "path": "storage.js",
+          "line": 1,
+          "end_line": 26
+        },
+        {
+          "path": "README.md",
+          "line": 65,
+          "end_line": 67
+        }
+      ]
+    },
+    {
+      "id": "json_exchange",
+      "type": "external",
+      "label": "JSON backups and sources",
+      "sublabel": "pasted data, shared URLs and export",
+      "pos": [
+        1370,
+        535
+      ],
+      "size": [
+        220,
+        100
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 32,
+          "end_line": 38
+        },
+        {
+          "path": "storage.js",
+          "line": 54,
+          "end_line": 73
+        },
+        {
+          "path": "storage.js",
+          "line": 201,
+          "end_line": 215
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Browser application · no application server",
+      "wraps": [
+        "editor_ui",
+        "app_modules",
+        "world_model",
+        "storage_module",
+        "browser_storage"
+      ],
+      "pad": 30
+    }
+  ],
+  "connections": [
+    {
+      "id": "author-edits",
+      "from": "author",
+      "to": "editor_ui",
+      "label": "edits world"
+    },
+    {
+      "id": "host-serves",
+      "from": "static_host",
+      "to": "editor_ui",
+      "label": "serves UI"
+    },
+    {
+      "id": "ui-events",
+      "from": "editor_ui",
+      "to": "app_modules",
+      "label": "editor events and controls"
+    },
+    {
+      "id": "model-write",
+      "from": "app_modules",
+      "to": "world_model",
+      "label": "updates world records"
+    },
+    {
+      "id": "model-read",
+      "from": "world_model",
+      "to": "app_modules",
+      "label": "state for rendering"
+    },
+    {
+      "id": "load-save",
+      "from": "app_modules",
+      "to": "storage_module",
+      "label": "load and save world"
+    },
+    {
+      "id": "autosave",
+      "from": "storage_module",
+      "to": "browser_storage",
+      "label": "writes saved data"
+    },
+    {
+      "id": "restore",
+      "from": "browser_storage",
+      "to": "storage_module",
+      "label": "restore saved data"
+    },
+    {
+      "id": "import-json",
+      "from": "json_exchange",
+      "to": "storage_module",
+      "label": "paste or fetch JSON"
+    },
+    {
+      "id": "export-json",
+      "from": "storage_module",
+      "to": "json_exchange",
+      "label": "download or copy JSON"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Persistence and portability",
+      "items": [
+        "Autosaved world data stays in this browser's localStorage; clearing that storage removes its local copy. (README.md:65-67; storage.js:1-26)",
+        "JSON exports are portable backups; linked imports fetch from Drive or raw GitHub and need browser-accessible files. (README.md:32-38; storage.js:54-83, 201-215)"
+      ]
+    }
+  ]
+}
