@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "startedAt": "2026-10-24T18:41:50.817Z",
+  "specification": {
+    "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+    "sha256": "bfc998138ad32e9fa5460fe7125593f5dac2f705588375b1ed1d97354c0dfd7d",
+    "bytes": 6706
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+    "sha256": "0c23156b3bbba905fe60b1caab0b2893cb67ea085aa90ebbc7fe32b1fb1c65ef",
+    "bytes": 830450
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/thanate/Developer/Games/WorldBuilder",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "bfc998138ad32e9fa5460fe7125593f5dac2f705588375b1ed1d97354c0dfd7d",
+          "bytes": 6706
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 398,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/thanate/Developer/Games/WorldBuilder",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "220395d8-949e-4583-839e-df9425a3212f",
+        "ok": true,
+        "command": "deliver",
+        "type": "architecture",
+        "input": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+        "output": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+        "specification": {
+          "sha256": "bfc998138ad32e9fa5460fe7125593f5dac2f705588375b1ed1d97354c0dfd7d",
+          "bytes": 6706
+        },
+        "artifact": {
+          "sha256": "0c23156b3bbba905fe60b1caab0b2893cb67ea085aa90ebbc7fe32b1fb1c65ef",
+          "bytes": 830450
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        },
+        "evidence": {
+          "verified": true,
+          "repository": "https://github.com/UNKNOWN-X0/WorldBuilder",
+          "revision": "c4a63033fb69146d38185fb216d8e8f9ccc535dd",
+          "references": 19
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 220,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "check",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+        "artifact": {
+          "sha256": "0c23156b3bbba905fe60b1caab0b2893cb67ea085aa90ebbc7fe32b1fb1c65ef",
+          "bytes": 830450
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "showcase",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 0
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 5,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 6.606134969325153,
+            "maxBends": 4,
+            "routesOverSuggestedBends": 2,
+            "maxStretch": 1.316,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 24,
+            "minInteriorSegmentPx": 60,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "import-json",
+                  "from": "json_exchange",
+                  "to": "storage_module",
+                  "label": "paste or fetch JSON",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
+                },
+                "bends": 4,
+                "stretch": 1.267,
+                "directCorridorBlockers": [
+                  {
+                    "id": "browser_storage",
+                    "label": "Browser localStorage",
+                    "box": [
+                      1060,
+                      535,
+                      210,
+                      100
+                    ]
+                  }
+                ]
+              },
+              {
+                "relationship": {
+                  "id": "export-json",
+                  "from": "storage_module",
+                  "to": "json_exchange",
+                  "label": "download or copy JSON",
+                  "collectionIndex": 9,
+                  "artifactIndex": 10
+                },
+                "bends": 4,
+                "stretch": 1.316,
+                "directCorridorBlockers": [
+                  {
+                    "id": "browser_storage",
+                    "label": "Browser localStorage",
+                    "box": [
+                      1060,
+                      535,
+                      210,
+                      100
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": true,
+            "emptyTopPx": 70,
+            "emptyTopRatio": 0.096,
+            "occupiedTop": 70,
+            "viewBoxTop": 0,
+            "canvasHeight": 727,
+            "typicalNodeHeight": 100,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1346,
+            "actualBudgetPx": 1346,
+            "actualReaderWidth": 1376,
+            "desiredReaderWidth": 1558.125,
+            "viewportCap": 1376,
+            "limit": "viewport-cap",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": false,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "edge",
+              "id": "author-edits",
+              "from": "author",
+              "to": "editor_ui"
+            },
+            "minimumSourceTextPx": 8,
+            "minimumProjectedTextPx": 6.606134969325153,
+            "semanticTextCount": 27
+          },
+          "issues": []
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "220395d8-949e-4583-839e-df9425a3212f"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 42,
+      "command": [
+        "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
+        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "browser-check",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+        "--json",
+        "--require-provenance",
+        "--out-dir",
+        "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "220395d8-949e-4583-839e-df9425a3212f",
+        "artifact": {
+          "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+          "sha256": "0c23156b3bbba905fe60b1caab0b2893cb67ea085aa90ebbc7fe32b1fb1c65ef",
+          "bytes": 830450
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/browser-check-runtime",
+            "severity": "error",
+            "message": "browser-check could not complete its Chrome inspection.",
+            "subject": {
+              "artifact": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html"
+            },
+            "evidence": {
+              "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8795, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+            },
+            "supportedFixes": [
+              "resolve the reported Chrome inspection error, then rerun browser-check"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "fail",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": []
+        },
+        "themeStates": {
+          "status": "fail",
+          "viewports": []
+        },
+        "readability": {
+          "status": "fail",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": []
+        },
+        "viewerChrome": {
+          "status": "fail",
+          "viewports": []
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "directory": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp",
+          "receipt": "world-builder.browser-check.json",
+          "files": []
+        },
+        "error": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8795, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8795, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp/world-builder.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp/world-builder.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp/world-builder.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-24T18:41:51.598Z",
+  "durationMs": 781,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+    "sha256": "bfc998138ad32e9fa5460fe7125593f5dac2f705588375b1ed1d97354c0dfd7d",
+    "bytes": 6706
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+    "sha256": "0c23156b3bbba905fe60b1caab0b2893cb67ea085aa90ebbc7fe32b1fb1c65ef",
+    "bytes": 830450
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.23.1, libuv 1.51.0, darwin; pid=8795, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 1,
+    "shown": 1,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp/world-builder.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp/world-builder.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/review-line-clamp/world-builder.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 781,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  }
+}
