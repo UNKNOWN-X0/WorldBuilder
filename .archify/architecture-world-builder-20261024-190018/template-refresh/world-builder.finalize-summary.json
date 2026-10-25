@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/candidate.json",
+    "sha256": "a6dc7f4931a9a511a00c92d3bc0f31d92c7179e20cc464463b84e9ab0e816a38",
+    "bytes": 12043
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/world-builder.html",
+    "sha256": "a689f7c9d1fc4bfa209b1fe77db1b613290da64446236e3970812fa6fd3b4f06",
+    "bytes": 845759
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/template-refresh/world-builder.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/template-refresh/world-builder.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Games/WorldBuilder/.archify/architecture-world-builder-20261024-190018/template-refresh/world-builder.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3771,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 2
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "id": "init-loads-storage",
+            "from": "app_init",
+            "to": "storage_module",
+            "label": "loads",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "bends": 3,
+          "stretch": 1.119
+        },
+        {
+          "relationship": {
+            "id": "remote-import",
+            "from": "remote_json",
+            "to": "storage_module",
+            "label": "fetch",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "bends": 3,
+          "stretch": 1
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "app_init → storage_module needs 3 bends: move node app_init or storage_module so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "remote_json → storage_module needs 3 bends: move node remote_json or storage_module so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}
