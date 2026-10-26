@@ -1,0 +1,317 @@
+{
+  "communities": {
+    "0": [
+      "components",
+      "components_addcomponent",
+      "components_canceledit",
+      "components_collapsedetails",
+      "components_createcomponentcard",
+      "components_deletecomponent",
+      "components_duplicatecomponent",
+      "components_expanddetails",
+      "components_navigatetocomponent",
+      "components_renderfieldsedit",
+      "components_renderfieldsview",
+      "components_renderlinkspreview",
+      "components_saveedit",
+      "components_togglecollapse",
+      "components_toggleeditmode",
+      "components_undodelete",
+      "components_updatefield",
+      "data_escapehtml",
+      "data_generateid",
+      "storage_savetolocalstorage",
+      "ui_rendercontent",
+      "ui_rendersidebarnav"
+    ],
+    "1": [
+      "github_workflows_jekyll_docker",
+      "github_workflows_jekyll_docker_build_runs_on",
+      "github_workflows_jekyll_docker_build_steps",
+      "github_workflows_jekyll_docker_jobs",
+      "github_workflows_jekyll_docker_jobs_build",
+      "github_workflows_jekyll_docker_name",
+      "github_workflows_jekyll_docker_pull_request_branches",
+      "github_workflows_jekyll_docker_push_branches",
+      "github_workflows_jekyll_docker_steps_name",
+      "github_workflows_jekyll_docker_steps_run",
+      "github_workflows_jekyll_docker_steps_uses",
+      "github_workflows_jekyll_docker_true",
+      "github_workflows_jekyll_docker_true_pull_request",
+      "github_workflows_jekyll_docker_true_push"
+    ],
+    "2": [
+      "app",
+      "app_init",
+      "app_populatethemeselect",
+      "data_initializetemplatedata",
+      "index_import_export_controls",
+      "storage",
+      "storage_copyjson",
+      "storage_downloadjson",
+      "storage_loadfromjson",
+      "storage_loadfromlink",
+      "storage_loadfromlocalstorage",
+      "storage_normalizeimportedworld",
+      "storage_openjsonpreview",
+      "storage_resetdata",
+      "storage_updatemetafields",
+      "storage_validatejsonstructure",
+      "storage_worldcollectionkeys",
+      "ui_updatebreadcrumb",
+      "ui_updatesidebartitle"
+    ],
+    "3": [
+      "index_world_builder_app",
+      "readme_entry_management_tools",
+      "readme_genre_themes_and_text_direction",
+      "readme_linked_entries",
+      "readme_no_build_workflow",
+      "readme_structured_world_elements",
+      "readme_utf8_multilingual_projects",
+      "readme_world_builder_app"
+    ],
+    "4": [
+      "index_hosted_file_import",
+      "index_import_modal",
+      "index_project_metadata",
+      "index_project_structure_navigation",
+      "index_raw_json_import",
+      "index_reset_all_data",
+      "index_settings_modal",
+      "index_theme_picker",
+      "storage_updatemeta",
+      "ui",
+      "ui_closemodal",
+      "ui_showloadmodal",
+      "ui_showsettingsmodal",
+      "ui_showtoast",
+      "ui_togglesidebar",
+      "ui_updatecontentheader"
+    ],
+    "5": [
+      "ref_node_assert",
+      "ref_node_fs",
+      "ref_node_test",
+      "ref_node_vm",
+      "tests_functionality_test",
+      "tests_functionality_test_world",
+      "tests_import_test",
+      "tests_import_test_importer",
+      "tests_import_test_importer_c",
+      "tests_import_test_importer_c_updatemetafields"
+    ],
+    "6": [
+      "index_project_language_and_direction",
+      "themes",
+      "themes_applytheme",
+      "themes_renderthemepicker",
+      "themes_settextdirection",
+      "themes_themes",
+      "themes_updatethemepickerui"
+    ],
+    "7": [
+      "index_app_js",
+      "index_components_js",
+      "index_data_js",
+      "index_module_loading_order",
+      "index_schemas_js",
+      "index_storage_js",
+      "index_themes_js",
+      "index_ui_js"
+    ],
+    "8": [
+      "data",
+      "data_data",
+      "data_findbyid",
+      "data_resolvelink"
+    ],
+    "9": [
+      "readme_browser_persistence_and_transfer",
+      "readme_data_model_and_schemas",
+      "readme_entry_forms_and_rendering",
+      "readme_project_architecture",
+      "readme_regression_tests",
+      "readme_theme_and_visual_style"
+    ],
+    "10": [
+      "components_filtercomponents",
+      "index_dynamic_component_editor",
+      "index_entry_search",
+      "index_main_editor"
+    ],
+    "11": [
+      "readme_browser_local_storage",
+      "readme_local_data_privacy_and_backups",
+      "readme_portable_json_world",
+      "readme_remote_json_import"
+    ],
+    "13": [
+      "schemas",
+      "schemas_schemas"
+    ],
+    "14": [
+      "agents",
+      "agents_local_workflow",
+      "agents_project_data",
+      "agents_project_instructions"
+    ]
+  },
+  "cohesion": {
+    "0": 0.23809523809523808,
+    "1": 0.14285714285714285,
+    "2": 0.2222222222222222,
+    "3": 0.25,
+    "4": 0.14166666666666666,
+    "5": 0.26666666666666666,
+    "6": 0.42857142857142855,
+    "7": 0.25,
+    "8": 0.5,
+    "9": 0.3333333333333333,
+    "10": 0.6666666666666666,
+    "11": 0.6666666666666666,
+    "13": 1.0,
+    "14": 0.5
+  },
+  "gods": [
+    {
+      "id": "ui_rendersidebarnav",
+      "label": "renderSidebarNav()",
+      "degree": 16
+    },
+    {
+      "id": "ui_rendercontent",
+      "label": "renderContent()",
+      "degree": 14
+    },
+    {
+      "id": "storage_loadfromjson",
+      "label": "loadFromJSON()",
+      "degree": 12
+    },
+    {
+      "id": "storage_loadfromlink",
+      "label": "loadFromLink()",
+      "degree": 12
+    },
+    {
+      "id": "storage_savetolocalstorage",
+      "label": "saveToLocalStorage()",
+      "degree": 11
+    },
+    {
+      "id": "app_init",
+      "label": "init()",
+      "degree": 10
+    },
+    {
+      "id": "components_createcomponentcard",
+      "label": "createComponentCard()",
+      "degree": 9
+    },
+    {
+      "id": "storage_resetdata",
+      "label": "resetData()",
+      "degree": 8
+    },
+    {
+      "id": "ui_updatebreadcrumb",
+      "label": "updateBreadcrumb()",
+      "degree": 8
+    },
+    {
+      "id": "themes_applytheme",
+      "label": "applyTheme()",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Reset all data control",
+      "target": "resetData()",
+      "source_files": [
+        "index.html",
+        "storage.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "crosses file types (code ↔ doc); bridges separate communities; peripheral node `Reset all data control` unexpectedly reaches hub `resetData()`"
+    },
+    {
+      "source": "Import and export controls",
+      "target": "showLoadModal()",
+      "source_files": [
+        "index.html",
+        "ui.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "crosses file types (code ↔ doc); bridges separate communities; peripheral node `showLoadModal()` unexpectedly reaches hub `Import and export controls`"
+    },
+    {
+      "source": "Main content editor",
+      "target": "addComponent()",
+      "source_files": [
+        "index.html",
+        "components.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "crosses file types (code ↔ doc); bridges separate communities"
+    },
+    {
+      "source": "Import and export controls",
+      "target": "copyJSON()",
+      "source_files": [
+        "index.html",
+        "storage.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "crosses file types (code ↔ doc); peripheral node `copyJSON()` unexpectedly reaches hub `Import and export controls`"
+    },
+    {
+      "source": "Import JSON data modal",
+      "target": "loadFromJSON()",
+      "source_files": [
+        "index.html",
+        "storage.js"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "crosses file types (code ↔ doc); bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Import and export controls` connect `Import Export Storage` to `Product Overview`, `ui.js`?",
+      "why": "High betweenness centrality (0.075) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Import from Google Drive or raw GitHub URL`, `Search, filter, duplicate, edit, and undo`, `Genre themes and text direction` to the rest of the system?",
+      "why": "20 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `CI Workflow` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Import JSON data modal` connect `ui.js` to `Import Export Storage`?",
+      "why": "High betweenness centrality (0.064) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `ui.js` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14166666666666666 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `World Builder application interface` connect `Product Overview` to `Import Export Storage`?",
+      "why": "High betweenness centrality (0.063) - this node is a cross-community bridge."
+    }
+  ]
+}

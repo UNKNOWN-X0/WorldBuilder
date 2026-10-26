@@ -1,22 +1,15 @@
-# Graph Report - WorldBuilder  (2026-10-25)
+# Graph Report - WorldBuilder  (2026-10-26)
 
 ## Corpus Check
-- 24 files · ~80,394 words
-- Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 3 file(s) not represented in the graph (top: (none) 2, .css 1)
+- cluster-only mode — file stats not available
 
 ## Summary
 - 128 nodes · 223 edges · 14 communities (11 shown, 3 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 1 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
-## Refresh Notes
-- `refresh_classic_calls.py` verifies 80 call sites against source lines, restoring cross-file calls across the ordered classic scripts and inline HTML handlers. The extractor misses these shared-global calls.
-- The graph has 223 links (222 extracted, 1 inferred); Graphify HTML renders the same 223 edges, with no duplicate endpoint pairs or dangling nodes.
-- The ≤1-connection warning is a heuristic across code, documentation and concept nodes; reviewed helper leaves are retained without speculative links.
-
 ## Graph Freshness
-- Built from commit: `a718b185`
+- Built from commit: `c24ae5db`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -39,14 +32,14 @@
 ## God Nodes (most connected - your core abstractions)
 1. `renderSidebarNav()` - 16 edges
 2. `renderContent()` - 14 edges
-3. `loadFromLink()` - 12 edges
-4. `loadFromJSON()` - 12 edges
+3. `loadFromJSON()` - 12 edges
+4. `loadFromLink()` - 12 edges
 5. `saveToLocalStorage()` - 11 edges
 6. `init()` - 10 edges
 7. `createComponentCard()` - 9 edges
 8. `resetData()` - 8 edges
-9. `applyTheme()` - 8 edges
-10. `updateBreadcrumb()` - 8 edges
+9. `updateBreadcrumb()` - 8 edges
+10. `applyTheme()` - 8 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Reset all data control` --calls--> `resetData()`  [EXTRACTED]
@@ -55,7 +48,7 @@
   index.html → ui.js
 - `Main content editor` --calls--> `addComponent()`  [EXTRACTED]
   index.html → components.js
-- `Import JSON data modal` --calls--> `loadFromLink()`  [EXTRACTED]
+- `Import and export controls` --calls--> `copyJSON()`  [EXTRACTED]
   index.html → storage.js
 - `Import JSON data modal` --calls--> `loadFromJSON()`  [EXTRACTED]
   index.html → storage.js
@@ -117,15 +110,15 @@ Nodes (3): Local workflow, Project data, Project instructions
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Import and export controls` connect `Import Export Storage` to `Product Overview`, `ui.js`?**
+- **Why does `Import and export controls` connect `Import Export Storage` to `Product Overview`, `Interface and Import Controls`?**
   _High betweenness centrality (0.075) - this node is a cross-community bridge._
 - **What connects `Import from Google Drive or raw GitHub URL`, `Search, filter, duplicate, edit, and undo`, `Genre themes and text direction` to the rest of the system?**
   _20 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `CI Workflow` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
-- **Why does `Import JSON data modal` connect `ui.js` to `Import Export Storage`?**
+- **Why does `Import JSON data modal` connect `Interface and Import Controls` to `Import Export Storage`?**
   _High betweenness centrality (0.064) - this node is a cross-community bridge._
-- **Should `ui.js` be split into smaller, more focused modules?**
+- **Should `Interface and Import Controls` be split into smaller, more focused modules?**
   _Cohesion score 0.14166666666666666 - nodes in this community are weakly interconnected._
 - **Why does `World Builder application interface` connect `Product Overview` to `Import Export Storage`?**
   _High betweenness centrality (0.063) - this node is a cross-community bridge._
