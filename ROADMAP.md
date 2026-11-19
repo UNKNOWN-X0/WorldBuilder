@@ -8,15 +8,7 @@ A private, portable notebook for a fictional world: structured entries that link
 
 ## Now
 
-**Names never run as HTML** (stated 2026-11-19, [#4](https://github.com/UNKNOWN-X0/World-Builder/issues/4)). Toasts insert entry names as HTML, so a hostile imported world could run script. *Done when* no toast renders data as HTML and a test covers a hostile name.
-
-**Icons on the text line** (stated 2025-12-11, [#3](https://github.com/UNKNOWN-X0/World-Builder/issues/3)). Icons sit off their text, and action icon colours differ. *Done when* icons align and match their button colour in every theme.
-
-## Next
-
-**Deletion keeps links honest** (stated 2026-11-19, [#5](https://github.com/UNKNOWN-X0/World-Builder/issues/5)). Deleting leaves dangling links, and Undo moves the entry to the end.
-
-**Tests in CI** (stated 2026-11-19, [#6](https://github.com/UNKNOWN-X0/World-Builder/issues/6)). The workflow builds Jekyll and never runs the tests.
+**Tests in CI** (stated 2026-11-19, [#6](https://github.com/UNKNOWN-X0/World-Builder/issues/6)). The workflow builds Jekyll and never runs the tests. *Done when* every push runs the tests and a failing test fails the run.
 
 ## Later
 
