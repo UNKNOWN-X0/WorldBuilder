@@ -11,25 +11,32 @@ A browser-based worldbuilding workspace for writers and game masters. Organize c
 
 ## Features
 
-- Organize story details into structured sections, including characters, events, locations, factions, items, lore, and world rules.
-- Link entries by ID and navigate between related world elements.
-- Choose from 15 genre themes and switch between left-to-right and right-to-left text direction.
-- Search, filter, duplicate, and edit entries; undo deletions.
-- Auto-save in browser storage, or import and export a world as JSON.
-- Import JSON from Google Drive share links or GitHub file links.
-- Use UTF-8 text for multilingual projects.
+- **Structured sections:** characters, events, locations, factions, items, lore, and world rules.
+- **Linked entries:** link entries by ID and jump between related world elements.
+- **Genre themes:** 15 themes, plus left-to-right or right-to-left text direction.
+- **Editing tools:** search, filter, duplicate, and edit entries; undo deletions.
+- **Portable data:** auto-save in the browser, and import or export a world as JSON.
+- **Hosted imports:** load JSON from Google Drive share links or GitHub file links.
+- **Multilingual text:** UTF-8 throughout.
 
 ## Getting started
 
-### Use the hosted app
+### Use it online
 
-Open the [live app](https://unknown-x0.github.io/World-Builder/). Your edits are stored in that browser's local storage. Export your world to JSON regularly to keep a backup or move it to another browser.
+Open the [live app](https://unknown-x0.github.io/World-Builder/). Export your world to JSON regularly to keep a backup or move it to another browser.
 
-### Run locally
+### Run it yourself
 
-Download or clone this repository, then open `index.html` in a browser. The app uses plain HTML, CSS, and JavaScript; no build step or package installation is required.
+Download or clone the repository, then open `index.html` in a browser. No build step or package installation is required.
 
-## Import and export
+```sh
+git clone https://github.com/UNKNOWN-X0/World-Builder.git
+open World-Builder/index.html
+```
+
+## Usage
+
+### Import and export
 
 - **Export JSON** downloads the current world as a file.
 - **Copy JSON** copies the data to the clipboard; **Preview** opens the JSON in a new tab.
@@ -37,12 +44,12 @@ Download or clone this repository, then open `index.html` in a browser. The app 
 
 World data includes collections for characters, events, locations, factions, items, lore, and rules, plus project metadata such as title, author, language, and theme.
 
-## Keyboard shortcuts
+### Keyboard shortcuts
 
 - `Ctrl`/`Cmd` + `S`: save or download the world as JSON
 - `Escape`: close an open modal
 
-## Privacy and backups
+## Privacy
 
 World data is saved in local storage in the browser where you use the app. Imported files are fetched from the link you provide. Export JSON to back up your work; clearing browser storage can remove the local copy.
 
@@ -52,17 +59,19 @@ World data is saved in local storage in the browser where you use the app. Impor
 node --test tests/*.test.cjs
 ```
 
+The tests cover importing worlds from files and links, and the main editing functions.
+
 ## Project structure
 
-| File | Responsibility |
-| --- | --- |
-| `index.html` | Page structure and module script loading |
-| `app.js` | Startup and application orchestration |
-| `data.js`, `schemas.js` | Data model and component definitions |
-| `components.js`, `ui.js` | Entry forms, rendering, and interface behavior |
-| `storage.js` | Browser persistence and JSON import/export |
-| `themes.js`, `styles.css` | Themes and visual styling |
-| `tests/` | Import and functionality regression tests |
+```text
+index.html             Page structure and module script loading
+app.js                 Startup and application orchestration
+data.js, schemas.js    Data model and component definitions
+components.js, ui.js   Entry forms, rendering, and interface behavior
+storage.js             Browser persistence and JSON import/export
+themes.js, styles.css  Themes and visual styling
+tests/                 Import and functionality regression tests
+```
 
 ## License
 
