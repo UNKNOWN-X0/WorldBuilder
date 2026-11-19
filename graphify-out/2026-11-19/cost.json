@@ -1,0 +1,14 @@
+{
+  "runs": [
+    {
+      "date": "2026-10-24T00:08:28.759700+00:00",
+      "input_tokens": null,
+      "output_tokens": null,
+      "files": 12,
+      "usage_measured": false
+    }
+  ],
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "unmeasured_runs": 1
+}
