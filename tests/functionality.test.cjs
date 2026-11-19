@@ -75,3 +75,33 @@ test("toasts show entry names as text and give Undo a real button", () => {
   assert.equal(undone, 1);
   assert.equal(toast.removed, true);
 });
+
+function escaper() {
+  const src = fs.readFileSync(root + "/data.js", "utf8");
+  const start = src.indexOf("function escapeHtml");
+  return src.slice(start, src.indexOf("\n}", start) + 2);
+}
+
+test("card titles show hostile names and IDs as text", () => {
+  const x = world();
+  vm.runInContext(escaper(), x.c);
+  x.c.schemas = { characters: { icon: "", fields: [] } };
+  x.c.renderFieldsView = () => "";
+  const made = [];
+  x.c.document.createElement = () => { const n = { dataset: {}, set innerHTML(v) { made.push(v); } }; return n; };
+  x.c.createComponentCard("characters", { id: '"><img src=x onerror=1>', name: "<img src=x onerror=alert(1)>" }, 0);
+  const html = made.join("");
+  assert.ok(!html.includes("<img"), html.slice(0, 300));
+  assert.ok(html.includes("&lt;img src=x onerror=alert(1)&gt;"));
+});
+
+test("link tags pass the ID through data-id, never inside inline script", () => {
+  const x = world();
+  vm.runInContext(escaper(), x.c);
+  x.c.resolveLink = () => null;
+  const hostile = "x');alert(1);//";
+  const html = x.c.renderLinksPreview(hostile, []);
+  assert.ok(html.includes('data-id="x&#39;);alert(1);//"'), html);
+  assert.ok(html.includes('onclick="navigateToComponent(this.dataset.id)"'), html);
+  assert.ok(!html.includes("navigateToComponent('"), html);
+});

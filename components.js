@@ -94,7 +94,7 @@ function updateField(type, index, field, value) {
     const displayName =
       data[type][index].name || data[type][index].topic || data[type][index].id;
     card.querySelector(".component-title").innerHTML =
-      `${schemas[type].icon} ${displayName} <span style="color: var(--text-dim); font-size: 14px;">(${data[type][index].id})</span>`;
+      `${schemas[type].icon} ${escapeHtml(displayName)} <span style="color: var(--text-dim); font-size: 14px;">(${escapeHtml(data[type][index].id)})</span>`;
   }
 
   saveToLocalStorage();
@@ -142,7 +142,7 @@ function createComponentCard(type, item, index) {
 
   card.innerHTML = `
         <div class="component-header">
-            <div class="component-title">${schema.icon} ${displayName} <span style="color: var(--text-dim); font-size: 14px; font-weight: 400;">(${item.id})</span></div>
+            <div class="component-title">${schema.icon} ${escapeHtml(displayName)} <span style="color: var(--text-dim); font-size: 14px; font-weight: 400;">(${escapeHtml(item.id)})</span></div>
             <div class="component-controls">
                 <button class="btn-edit" onclick="toggleEditMode('${type}', ${index}, event)" data-editing="false">
                     Edit
@@ -390,20 +390,6 @@ function cancelEdit(type, index) {
   showToast("Changes discarded", "info", 2000);
 }
 
-function renderLinksPreview(value, targets) {
-  if (!value) return "";
-  const ids = value
-    .split(",")
-    .map((id) => id.trim())
-    .filter((id) => id);
-  return ids
-    .map((id) => {
-      const resolved = resolveLink(id, targets);
-      const name = resolved ? resolved.name || resolved.topic || id : id;
-      return `<span class="link-tag" onclick="navigateToComponent('${escapeHtml(id)}')" title="Click to navigate">${escapeHtml(name)} (${escapeHtml(id)})</span>`;
-    })
-    .join(" ");
-}
 
 function renderLinksPreview(value, targets) {
   if (!value) return "";
@@ -415,7 +401,7 @@ function renderLinksPreview(value, targets) {
     .map((id) => {
       const resolved = resolveLink(id, targets);
       const name = resolved ? resolved.name || resolved.topic || id : id;
-      return `<span class="link-tag" onclick="navigateToComponent('${escapeHtml(id)}')" title="Click to navigate">${escapeHtml(name)} (${escapeHtml(id)})</span>`;
+      return `<span class="link-tag" data-id="${escapeHtml(id)}" onclick="navigateToComponent(this.dataset.id)" title="Click to navigate">${escapeHtml(name)} (${escapeHtml(id)})</span>`;
     })
     .join(" ");
 }
