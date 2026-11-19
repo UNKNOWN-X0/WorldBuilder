@@ -155,7 +155,8 @@ function toggleSidebar() {
 
 // Toast notifications
 let toastTimeout;
-function showToast(message, type = "info", duration = 3000) {
+// The message is always shown as text; an optional action adds a real button.
+function showToast(message, type = "info", duration = 3000, action = null) {
   const existingToasts = document.querySelectorAll(".toast");
   existingToasts.forEach((t) => t.remove());
 
@@ -167,7 +168,20 @@ function showToast(message, type = "info", duration = 3000) {
   else if (type === "warning") icon = "⚠️";
   else if (type === "error") icon = "✗";
 
-  toast.innerHTML = `<strong>${icon}</strong> ${message}`;
+  const strong = document.createElement("strong");
+  strong.textContent = icon;
+  toast.append(strong, " " + message);
+  if (action) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "toast-action";
+    button.textContent = action.label;
+    button.addEventListener("click", () => {
+      action.onClick();
+      toast.remove();
+    });
+    toast.append(button);
+  }
   document.body.appendChild(toast);
 
   if (toastTimeout) clearTimeout(toastTimeout);

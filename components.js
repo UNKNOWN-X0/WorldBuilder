@@ -44,9 +44,10 @@ function deleteComponent(type, index) {
   saveToLocalStorage();
 
   showToast(
-    `Deleted ${item.name || item.topic || item.id}. <button onclick="undoDelete()" style="margin-left: 10px; padding: 5px 10px; background: var(--accent); border: none; border-radius: 4px; cursor: pointer; color: white;">Undo</button>`,
+    `Deleted ${item.name || item.topic || item.id}.`,
     "warning",
     5000,
+    { label: "Undo", onClick: undoDelete },
   );
 }
 

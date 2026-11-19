@@ -42,3 +42,36 @@ test("delete and undo both persist their changes", () => {
   x.c.undoDelete();
   assert.equal(x.c.data.characters.length, 1);
 });
+
+test("toasts show entry names as text and give Undo a real button", () => {
+  const src = fs.readFileSync(root + "/ui.js", "utf8");
+  const start = src.indexOf("function showToast");
+  const end = src.indexOf("\nfunction ", start + 1);
+  const made = [];
+  const node = (tag) => {
+    const n = { tag, children: [], listeners: {}, textContent: "", removed: false,
+      append(...xs) { this.children.push(...xs); },
+      addEventListener(t, f) { this.listeners[t] = f; },
+      remove() { this.removed = true; } };
+    Object.defineProperty(n, "innerHTML", { set() { throw new Error("innerHTML used"); } });
+    made.push(n);
+    return n;
+  };
+  let undone = 0;
+  const c = {
+    toastTimeout: null, setTimeout: () => 1, clearTimeout() {},
+    document: { querySelectorAll: () => [], createElement: node, body: { appendChild() {} }, addEventListener() {} },
+  };
+  vm.createContext(c);
+  vm.runInContext(src.slice(start, end === -1 ? undefined : end), c);
+  const hostile = 'Deleted <img src=x onerror="alert(1)">.';
+  c.showToast(hostile, "warning", 5000, { label: "Undo", onClick: () => undone++ });
+  const toast = made.find((n) => n.tag === "div");
+  assert.ok(toast.children.includes(" " + hostile), "message is appended as a text string");
+  assert.ok(!made.some((n) => n.tag === "img"), "no element is created from the message");
+  const button = made.find((n) => n.tag === "button");
+  assert.equal(button.textContent, "Undo");
+  button.listeners.click();
+  assert.equal(undone, 1);
+  assert.equal(toast.removed, true);
+});

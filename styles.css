@@ -1342,3 +1342,13 @@ textarea {
     display: block;
   }
 }
+
+.toast-action {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background: var(--accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
