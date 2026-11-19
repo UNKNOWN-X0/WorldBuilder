@@ -20,6 +20,7 @@ let data = {
 let currentTab = "characters";
 let lastDeletedItem = null;
 let lastDeletedType = null;
+let lastDeletedIndex = null;
 
 // Generate unique ID for a component type
 function generateId(type) {

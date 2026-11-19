@@ -10,6 +10,7 @@ function world() {
     data: { characters: [{ id: "C1", name: "Tester" }] },
     lastDeletedItem: null,
     lastDeletedType: null,
+    lastDeletedIndex: null,
     generateId: () => "C2",
     renderSidebarNav() {},
     renderContent() {},
@@ -98,10 +99,31 @@ test("card titles show hostile names and IDs as text", () => {
 test("link tags pass the ID through data-id, never inside inline script", () => {
   const x = world();
   vm.runInContext(escaper(), x.c);
-  x.c.resolveLink = () => null;
+  x.c.resolveLink = () => ({ name: "Found" });
   const hostile = "x');alert(1);//";
   const html = x.c.renderLinksPreview(hostile, []);
   assert.ok(html.includes('data-id="x&#39;);alert(1);//"'), html);
   assert.ok(html.includes('onclick="navigateToComponent(this.dataset.id)"'), html);
   assert.ok(!html.includes("navigateToComponent('"), html);
+});
+
+test("undo puts a deleted entry back where it was, and deletion counts dangling links", () => {
+  const x = world();
+  const toasts = [];
+  x.c.showToast = (m) => toasts.push(m);
+  x.c.schemas = { characters: { fields: { ally: { type: "links", targets: ["characters"] } } } };
+  x.c.data.characters = [{ id: "C1", name: "A" }, { id: "C2", name: "B", ally: "C3" }, { id: "C3", name: "C" }, { id: "C4", name: "D", ally: "C3, C1" }];
+  x.c.deleteComponent("characters", 2);
+  assert.match(toasts[0], /2 links now point to nothing/);
+  x.c.undoDelete();
+  assert.deepEqual(x.c.data.characters.map((c) => c.id), ["C1", "C2", "C3", "C4"]);
+});
+
+test("a link to a missing entry renders as broken, without a click action", () => {
+  const x = world();
+  vm.runInContext(escaper(), x.c);
+  x.c.resolveLink = () => null;
+  const html = x.c.renderLinksPreview("L9", ["lore"]);
+  assert.ok(html.includes("link-broken") && html.includes("L9 (missing)"), html);
+  assert.ok(!html.includes("onclick"), html);
 });

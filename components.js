@@ -33,18 +33,37 @@ function duplicateComponent(type, index) {
   );
 }
 
+// How many link fields across the world point at this ID.
+function countLinksTo(id) {
+  const defs = (typeof schemas !== "undefined" && schemas) || {};
+  let n = 0;
+  for (const [type, schema] of Object.entries(defs)) {
+    for (const [field, def] of Object.entries(schema.fields || {})) {
+      if (def.type !== "links" && def.type !== "link") continue;
+      for (const entry of data[type] || []) {
+        const ids = String(entry[field] || "").split(",").map((x) => x.trim());
+        if (ids.includes(id)) n++;
+      }
+    }
+  }
+  return n;
+}
+
 function deleteComponent(type, index) {
   const item = data[type][index];
   lastDeletedItem = JSON.parse(JSON.stringify(item));
   lastDeletedType = type;
+  lastDeletedIndex = index;
 
   data[type].splice(index, 1);
+  const dangling = countLinksTo(item.id);
   renderSidebarNav();
   renderContent();
   saveToLocalStorage();
 
   showToast(
-    `Deleted ${item.name || item.topic || item.id}.`,
+    `Deleted ${item.name || item.topic || item.id}.` +
+      (dangling ? ` ${dangling} link${dangling === 1 ? "" : "s"} now point to nothing.` : ""),
     "warning",
     5000,
     { label: "Undo", onClick: undoDelete },
@@ -53,7 +72,11 @@ function deleteComponent(type, index) {
 
 function undoDelete() {
   if (lastDeletedItem && lastDeletedType) {
-    data[lastDeletedType].push(lastDeletedItem);
+    const at = Math.min(
+      typeof lastDeletedIndex === "number" ? lastDeletedIndex : data[lastDeletedType].length,
+      data[lastDeletedType].length,
+    );
+    data[lastDeletedType].splice(at, 0, lastDeletedItem);
     renderSidebarNav();
     renderContent();
     saveToLocalStorage();
@@ -400,7 +423,9 @@ function renderLinksPreview(value, targets) {
   return ids
     .map((id) => {
       const resolved = resolveLink(id, targets);
-      const name = resolved ? resolved.name || resolved.topic || id : id;
+      if (!resolved)
+        return `<span class="link-tag link-broken" title="No entry has this ID">${escapeHtml(id)} (missing)</span>`;
+      const name = resolved.name || resolved.topic || id;
       return `<span class="link-tag" data-id="${escapeHtml(id)}" onclick="navigateToComponent(this.dataset.id)" title="Click to navigate">${escapeHtml(name)} (${escapeHtml(id)})</span>`;
     })
     .join(" ");
