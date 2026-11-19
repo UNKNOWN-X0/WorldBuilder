@@ -76,6 +76,12 @@ tests/                 Import and functionality regression tests
 assets/preview.png     Screenshot for this README
 ```
 
+## Project documents
+
+| File | What it covers |
+| --- | --- |
+| [ROADMAP.md](ROADMAP.md) | What is planned next, with an issue per item |
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
