@@ -12,7 +12,7 @@ A private, portable notebook for a fictional world: structured entries that link
 
 ## Later
 
-**Google Drive sync** (stated 2025-12-11, [#2](https://github.com/UNKNOWN-X0/World-Builder/issues/2)). Save and reopen a world from Drive; waits on whether a Google sign-in fits the product.
+**Google Drive sync** (stated 2025-12-11, [#2](https://github.com/UNKNOWN-X0/World-Builder/issues/2)). Save and reopen a world from Drive through an optional Google sign-in; the app keeps working without one.
 
 ## Not planned
 
