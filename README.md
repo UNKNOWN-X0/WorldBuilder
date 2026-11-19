@@ -9,6 +9,8 @@ A browser-based worldbuilding workspace for writers and game masters. Organize c
 
 **[Open World Builder →](https://unknown-x0.github.io/World-Builder/)**
 
+![World Builder](assets/preview.png)
+
 ## Features
 
 - **Structured sections:** characters, events, locations, factions, items, lore, and world rules.
@@ -71,6 +73,7 @@ components.js, ui.js   Entry forms, rendering, and interface behavior
 storage.js             Browser persistence and JSON import/export
 themes.js, styles.css  Themes and visual styling
 tests/                 Import and functionality regression tests
+assets/preview.png     Screenshot for this README
 ```
 
 ## License
